@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="hz&#39;s blog">
 <meta property="og:description" content="隐式类类型转换 在c++中，可以调用单参数构造函数，把指定类型转换为该类类型。这样的构造函数有时也被称为转换构造函数(converting constructors)。也就是说类的单参数构造函数，提供了把该形参类型转换为该类类型的一种方式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-08T02:31:51.864Z">
+<meta property="og:updated_time" content="2018-01-10T12:34:03.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C++类类型转换">
 <meta name="twitter:description" content="隐式类类型转换 在c++中，可以调用单参数构造函数，把指定类型转换为该类类型。这样的构造函数有时也被称为转换构造函数(converting constructors)。也就是说类的单参数构造函数，提供了把该形参类型转换为该类类型的一种方式。">
@@ -434,27 +434,10 @@
 <p><strong>最常见的例子：</strong></p>
 <p>string name = “Bill”;<br>在该例子中，由于string类提供了构造函数string (const char * s);因此存在字符串常量”Bill”到string类的隐式转换。</p>
 <p><strong>自定义类型示例：</strong></p>
-<pre><code>class Sales_data {
-public:
-    Sales_data() = default;
-    Sales_data( const std::string &amp;s ) : bookNo( s ) { }
-    Sales_data( const std::string &amp;s, unsigned n, double p ) :
-        bookNo( s ), units_sold( n ), revenue( p*n ) { }
-    Sales_data( std::istream &amp; );
-
-    std::string isbn() const { return bookNo; }
-    Sales_data&amp; combine( const Sales_data&amp; );
-
-private:
-    std::string     bookNo;
-    unsigned         units_sold;
-    double             revenue;
-};
-</code></pre><p>在上述例子中，由于<code>Sales_data( const std::string &amp;s )；</code>构造函数的存在，因此存在<code>string</code>类型到<code>Sales_data</code>的转换，因此在需要<code>Sales_data</code>对象的时候，我们可以使用<code>string</code>类型替代。</p>
-<pre><code>Sales_data item;
-string null_book = &quot;9-999-99999-9&quot;;
-item.combine( null_book );
-</code></pre><p><strong>PS：</strong></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sales_data</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    Sales_data() = <span class="keyword">default</span>;</span><br><span class="line">    Sales_data( <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;s ) : bookNo( s ) &#123; &#125;</span><br><span class="line">    Sales_data( <span class="keyword">const</span> <span class="built_in">std</span>::<span class="built_in">string</span> &amp;s, <span class="keyword">unsigned</span> n, <span class="keyword">double</span> p ) :</span><br><span class="line">        bookNo( s ), units_sold( n ), revenue( p*n ) &#123; &#125;</span><br><span class="line">    Sales_data( <span class="built_in">std</span>::istream &amp; );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span> <span class="title">isbn</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> bookNo; &#125;</span><br><span class="line">    <span class="function">Sales_data&amp; <span class="title">combine</span><span class="params">( <span class="keyword">const</span> Sales_data&amp; )</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span>     bookNo;</span><br><span class="line">    <span class="keyword">unsigned</span>         units_sold;</span><br><span class="line">    <span class="keyword">double</span>             revenue;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>在上述例子中，由于<code>Sales_data( const std::string &amp;s )；</code>构造函数的存在，因此存在<code>string</code>类型到<code>Sales_data</code>的转换，因此在需要<code>Sales_data</code>对象的时候，我们可以使用<code>string</code>类型替代。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sales_data item;</span><br><span class="line"><span class="built_in">string</span> null_book = <span class="string">"9-999-99999-9"</span>;</span><br><span class="line">item.combine( null_book );</span><br></pre></td></tr></table></figure>
+<p><strong> PS：</strong></p>
 <p>只有一次的隐式类类型转换是可行的，item.combine( “9-999-99999-9” );是错误的，因为在该语句中，存在着两次隐式转换，一次是字符串常量”9-999-99999-9”到string的转换，另一次是string到Sales_data的转换。</p>
 <p><strong>explicit constructors：</strong></p>
 <p>在你不想隐式转换，以防用户误操作怎么办？</p>
@@ -462,22 +445,12 @@ item.combine( null_book );
 <hr>
 <h3 id="类型转换函数"><a href="#类型转换函数" class="headerlink" title="类型转换函数"></a>类型转换函数</h3><p>类型转换函数(type conversion function)的作用是将一个类的对象转换成另一类型的数据</p>
 <p>我们经常下述代码风格：</p>
-<pre><code>while( cin &gt;&gt; num ){
-}
-</code></pre><p>输入操作符 <code>&gt;&gt;</code> 是二元操作符，返回做操作数作为其表达式结果，因此<code>cin &gt;&gt; num</code>返回<code>cin</code>,然而<code>cin</code>是输入流<code>istream</code>的对象，该对象能出现在条件表达式中，是因为在<code>istream</code>中定义了类型转换函数 <code>operator bool();</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span>( <span class="built_in">cin</span> &gt;&gt; num )&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输入操作符 <code>&gt;&gt;</code> 是二元操作符，返回做操作数作为其表达式结果，因此<code>cin &gt;&gt; num</code>返回<code>cin</code>,然而<code>cin</code>是输入流<code>istream</code>的对象，该对象能出现在条件表达式中，是因为在<code>istream</code>中定义了类型转换函数 <code>operator bool();</code>。</p>
 <p><strong>示例：</strong></p>
-<pre><code>class Sales_data {
-public:
-        return true;
-    }    
-};
-</code></pre><p>类<code>Sales_data</code>定义了从该类对象到<code>bool</code>类型的转换，因此，在需要<code>bool</code>类型的表达式中可以使用该类对象代替：</p>
-<pre><code>Sales_data item;
-
-if ( item ) {
-    cout &lt;&lt; &quot;true&quot;;
-}
-</code></pre>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sales_data</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;    </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>类<code>Sales_data</code>定义了从该类对象到<code>bool</code>类型的转换，因此，在需要<code>bool</code>类型的表达式中可以使用该类对象代替：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Sales_data item;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> ( item ) &#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"true"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
     </div>
     
