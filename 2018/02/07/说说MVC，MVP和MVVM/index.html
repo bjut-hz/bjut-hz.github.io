@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="C++,高阶函数," />
+  <meta name="keywords" content="MVC,MVP,MVVM," />
 
 
 
@@ -79,21 +79,29 @@
 
 
 
-<meta name="description" content="函数式编程有很多优点，详情可以参考我的博文卡马克：《用C++ 进行函数式编程》。在C++中，我们可以借助于函数对象或者函数指针来实现高阶函数。">
-<meta name="keywords" content="C++,高阶函数">
+<meta name="description" content="前言做客户端开发、前端开发对MVC、MVP、MVVM这些名词不了解也应该大致听过，都是为了解决图形界面应用程序复杂性管理问题而产生的应用架构模式。 网上很多文章关于这方面的讨论比较杂乱，各种 MV 模式之间的区别分不清，甚至有些描述都是错误的。本文追根溯源，从最经典的Smalltalk-80 MVC模式开始逐步还原图形界面之下最真实的 MV 模式。">
+<meta name="keywords" content="MVC,MVP,MVVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="C++ 高阶函数">
-<meta property="og:url" content="http://yoursite.com/2016/07/21/C++ 高阶函数/index.html">
+<meta property="og:title" content="说说MVC，MVP和MVVM">
+<meta property="og:url" content="http://yoursite.com/2018/02/07/说说MVC，MVP和MVVM/index.html">
 <meta property="og:site_name" content="hz&#39;s blog">
-<meta property="og:description" content="函数式编程有很多优点，详情可以参考我的博文卡马克：《用C++ 进行函数式编程》。在C++中，我们可以借助于函数对象或者函数指针来实现高阶函数。">
+<meta property="og:description" content="前言做客户端开发、前端开发对MVC、MVP、MVVM这些名词不了解也应该大致听过，都是为了解决图形界面应用程序复杂性管理问题而产生的应用架构模式。 网上很多文章关于这方面的讨论比较杂乱，各种 MV 模式之间的区别分不清，甚至有些描述都是错误的。本文追根溯源，从最经典的Smalltalk-80 MVC模式开始逐步还原图形界面之下最真实的 MV 模式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://i.imgur.com/7S95DNV.png">
-<meta property="og:image" content="http://i.imgur.com/nvvFPya.png">
-<meta property="og:updated_time" content="2018-01-10T12:35:04.523Z">
+<meta property="og:image" content="http://yoursite.com/images/1635594-3251cd903b8b716b.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-2f7efdb20ff108d4.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-d09edc47159aedaf.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-39939b59850392ff.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-14382f4f44134a18.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-1762fccf7a4a8513.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-9794248b2d551204.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-eb35f65886d201b0.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-aa2ff049f9605d3a.png">
+<meta property="og:image" content="http://yoursite.com/images/1635594-678b46998948b373.png">
+<meta property="og:updated_time" content="2018-02-07T08:36:00.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="C++ 高阶函数">
-<meta name="twitter:description" content="函数式编程有很多优点，详情可以参考我的博文卡马克：《用C++ 进行函数式编程》。在C++中，我们可以借助于函数对象或者函数指针来实现高阶函数。">
-<meta name="twitter:image" content="http://i.imgur.com/7S95DNV.png">
+<meta name="twitter:title" content="说说MVC，MVP和MVVM">
+<meta name="twitter:description" content="前言做客户端开发、前端开发对MVC、MVP、MVVM这些名词不了解也应该大致听过，都是为了解决图形界面应用程序复杂性管理问题而产生的应用架构模式。 网上很多文章关于这方面的讨论比较杂乱，各种 MV 模式之间的区别分不清，甚至有些描述都是错误的。本文追根溯源，从最经典的Smalltalk-80 MVC模式开始逐步还原图形界面之下最真实的 MV 模式。">
+<meta name="twitter:image" content="http://yoursite.com/images/1635594-3251cd903b8b716b.png">
 
 
 
@@ -123,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/21/C++ 高阶函数/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/07/说说MVC，MVP和MVVM/"/>
 
 
 
 
 
-  <title>C++ 高阶函数 | hz's blog</title>
+  <title>说说MVC，MVP和MVVM | hz's blog</title>
   
 
 
@@ -330,7 +338,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/07/21/C++ 高阶函数/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/07/说说MVC，MVP和MVVM/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="hz">
@@ -347,7 +355,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">C++ 高阶函数</h1>
+          <h1 class="post-title" itemprop="name headline">说说MVC，MVP和MVVM</h1>
         
 
         <div class="post-meta">
@@ -359,8 +367,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-21T23:39:52+08:00">
-                2016-07-21
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-07T16:34:11+08:00">
+                2018-02-07
               </time>
             
 
@@ -382,8 +390,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/C/" itemprop="url" rel="index">
-                    <span itemprop="name">C++</span>
+                  <a href="/categories/architecture/" itemprop="url" rel="index">
+                    <span itemprop="name">architecture</span>
                   </a>
                 </span>
 
@@ -400,9 +408,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/21/C++ 高阶函数/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/07/说说MVC，MVP和MVVM/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/07/21/C++ 高阶函数/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/07/说说MVC，MVP和MVVM/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -430,28 +438,131 @@
       
 
       
-        <blockquote>
-<p>函数式编程有很多优点，详情可以参考我的博文卡马克：《用C++ 进行函数式编程》。在C++中，我们可以借助于函数对象或者函数指针来实现高阶函数。</p>
-</blockquote>
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>做客户端开发、前端开发对MVC、MVP、MVVM这些名词不了解也应该大致听过，都是为了解决图形界面应用程序复杂性管理问题而产生的应用架构模式。</p>
+<p>网上很多文章关于这方面的讨论比较杂乱，各种 MV<em> 模式之间的区别分不清，甚至有些描述都是错误的。本文追根溯源，从最经典的Smalltalk-80 MVC模式开始逐步还原图形界面之下最真实的 MV</em> 模式。</p>
 <a id="more"></a>
-<h4 id="高阶函数是至少满足下列一个条件的函数"><a href="#高阶函数是至少满足下列一个条件的函数" class="headerlink" title="高阶函数是至少满足下列一个条件的函数:"></a>高阶函数是至少满足下列一个条件的函数:</h4><ul>
-<li>接受一个或多个函数作为输入</li>
-<li>输出一个函数</li>
+<h3 id="GUI程序面临的问题"><a href="#GUI程序面临的问题" class="headerlink" title="GUI程序面临的问题"></a>GUI程序面临的问题</h3><p>图形界面的应用程序提供给用户可视化的操作界面，这个界面提供给数据和信息。用户输入行为（键盘，鼠标等）会执行一些业务逻辑，可能会导致对应用程序数据的变更，数据的变更自然需要用户界面的同步变更以提供最准确的信息。例如用户对一个电子表格重新排序的操作，应用程序需要响应用户操作，对数据进行排序，然后需要同步到界面上。</p>
+<p>在开发应用程序的时候，以求更好的管理应用程序的复杂性，基于职责分离（Speration of Duties）的思想都会对应用程序进行分层。在开发图形界面应用程序的时候，会把管理用户界面的层次称为View，应用程序的数据为Model（注意这里的Model指的是Domain Model，这个应用程序对需要解决的问题的数据抽象，不包含应用的状态，可以简单理解为对象）。Model层对应用程序的业务逻辑无知，只保存数据结构和提供数据操作的接口</p>
+<p><img src="/images/1635594-3251cd903b8b716b.png" alt=""></p>
+<p>有了View和Model的分层，那么就有了两个问题：</p>
+<ul>
+<li><p>响应用户操作的业务逻辑（例如排序）的管理。</p>
+</li>
+<li><p>View如何同步Model的变更。</p>
+</li>
 </ul>
-<h3 id="三种求和方式"><a href="#三种求和方式" class="headerlink" title="三种求和方式"></a>三种求和方式</h3><p><img src="http://i.imgur.com/7S95DNV.png" alt="示例"></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//公式（1）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumInt</span><span class="params">( <span class="keyword">int</span> a, <span class="keyword">int</span> b )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = a; i &lt;= b; ++i ) &#123;</span><br><span class="line">        result += i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//公式（2）</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sumCube</span><span class="params">( <span class="keyword">int</span> a, <span class="keyword">int</span> b )</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> result &#123; <span class="number">0</span> &#125;;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = a; i &lt;= b; ++i ) &#123;</span><br><span class="line">        result += i * i * i;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//公式（3）</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">sumPi</span><span class="params">( <span class="keyword">int</span> a, <span class="keyword">int</span> b )</span></span>&#123;</span><br><span class="line">    <span class="keyword">double</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> ( <span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= b; i += <span class="number">4</span> ) &#123;</span><br><span class="line">        result += <span class="number">1</span> / ( (<span class="keyword">double</span>)(i) * (<span class="keyword">double</span>)( i + <span class="number">2</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述示例中，三个程序表面不同，但是程序包含的逻辑（对于不同序列进行求和）是相同的。对于计算机程序，这种类似就意味着抽象，进行更高层次的抽象，以较少重复劳动，减小出现错误的风险。</p>
-<p>上述代码可以抽象为：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//advanced abstraction</span></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span>, <span class="title">class</span> <span class="title">F</span>, <span class="title">class</span> <span class="title">G</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">T</span> <span class="title">sumGeneric</span>( <span class="title">T</span> <span class="title">a</span>, <span class="title">T</span> <span class="title">b</span>, <span class="title">F</span> <span class="title">func</span>, <span class="title">G</span> <span class="title">next</span> )&#123;</span></span><br><span class="line">    <span class="function">T <span class="title">result</span><span class="params">( <span class="number">0</span> )</span></span>;</span><br><span class="line">    <span class="keyword">for</span> ( T i = a; i &lt;= b; next( i ) ) &#123;</span><br><span class="line">        result += func( i ); </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>上述代码，允许用户将循环体内的过程func和nex以参数的形式传入。只要它们能以函数的形式调用即可，在C++中，我们可以使用函数对象做到这一点。</p>
-<p><strong>实现如下：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Self</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span><span class="params">( T x )</span></span>&#123; <span class="keyword">return</span> x;  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Cube</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span><span class="params">( T x )</span></span>&#123; <span class="keyword">return</span> x*x*x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span>&lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">MyFunc</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">T <span class="title">operator</span><span class="params">()</span><span class="params">( T x )</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span> / ( x * ( x + <span class="number">2</span> ) );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Inc</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">( T&amp; x )</span></span>&#123; ++x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt; <span class="class"><span class="keyword">class</span> <span class="title">T</span> &gt;</span></span><br><span class="line"><span class="class"><span class="title">class</span> <span class="title">Inc4</span>&#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">operator</span><span class="params">()</span><span class="params">( T&amp; x )</span></span>&#123; x += <span class="number">4</span>; &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p><strong>测试结果：</strong><br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"Normal Cal:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"sumInt( 1, 50 ):"</span> &lt;&lt; sumInt( <span class="number">1</span>, <span class="number">50</span> ) &lt;&lt; <span class="string">" sumCube( 1, 50 ):"</span> &lt;&lt; sumCube( <span class="number">1</span>, <span class="number">50</span> ) &lt;&lt; <span class="string">" sumPi( 1, 50 ):"</span> &lt;&lt; sumPi( <span class="number">1</span>, <span class="number">50</span> );</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"High Order Function:"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"sumInt( 1, 50 ):"</span> &lt;&lt; sumGeneric( <span class="number">1</span>, <span class="number">50</span>, Self&lt;<span class="keyword">int</span>&gt;(), Inc&lt;<span class="keyword">int</span>&gt;() ) </span><br><span class="line">        &lt;&lt; <span class="string">" sumCube( 1, 50 ):"</span> &lt;&lt; sumGeneric( <span class="number">1</span>, <span class="number">50</span>, Cube&lt;<span class="keyword">int</span>&gt;(), Inc&lt;<span class="keyword">int</span>&gt;() )</span><br><span class="line">        &lt;&lt; <span class="string">" sumPi( 1, 50 ):"</span> &lt;&lt; sumGeneric( (<span class="keyword">double</span>)<span class="number">1</span>, (<span class="keyword">double</span>)<span class="number">50</span>, MyFunc&lt;<span class="keyword">double</span>&gt;(), Inc4&lt;<span class="keyword">double</span>&gt;() );</span><br><span class="line"></span><br><span class="line">    system( <span class="string">"pause"</span> );</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://i.imgur.com/nvvFPya.png" alt="结果"></p>
-<h3 id="lambda表达式实现高阶函数"><a href="#lambda表达式实现高阶函数" class="headerlink" title="lambda表达式实现高阶函数"></a>lambda表达式实现高阶函数</h3><blockquote>
-<p>C++11在语言中加入了lambda表达式，我们可以借助与lambda表达式实现高阶函数。</p>
-</blockquote>
-<p>参看我的博文C++ lambda表达式</p>
-<p>代码下载地址：<br><a href="https://github.com/bjut-hz/High-Order-Function" target="_blank" rel="noopener">https://github.com/bjut-hz/High-Order-Function</a></p>
+<p>带着这两个问题开始探索 MV<em> 模式，会发现这些模式之间的差异可以归纳为对这两个问题处理的方式的不同。而几乎所有的 MV</em> 模式都是经典的Smalltalk-80 MVC的修改版。</p>
+<h3 id="Smalltalk-80-MVC"><a href="#Smalltalk-80-MVC" class="headerlink" title="Smalltalk-80 MVC"></a>Smalltalk-80 MVC</h3><h4 id="历史背景"><a href="#历史背景" class="headerlink" title="历史背景"></a>历史背景</h4><p>早在上个世纪70年代，美国的施乐公司（Xerox）的工程师研发了Smalltalk编程语言，并且开始用它编写图形界面的应用程序。而在Smalltalk-80这个版本的时候，一位叫Trygve Reenskaug的工程师设计了MVC图形应用程序的架构模式，极大地降低了图形应用程序的管理难度。而在四人众（GoF）的设计模式当中并没有把MVC当做是设计模式，而仅仅是把它看成解决问题的一些类的集合。Smalltalk-80 MVC和GoF描述的MVC是最经典的MVC模式。</p>
+<h4 id="MVC的依赖关系"><a href="#MVC的依赖关系" class="headerlink" title="MVC的依赖关系"></a>MVC的依赖关系</h4><p>MVC除了把应用程序分成View、Model层，还额外的加了一个Controller层，它的职责就是专门管理应用程序的业务逻辑。Model、View、Controller三个层次的依赖关系如下：</p>
+<p><img src="/images/1635594-2f7efdb20ff108d4.png" alt="依赖关系"></p>
+<p>Controller和View都依赖Model层，Controller和View可以互相依赖。在一些网上的资料Controller和View之间的依赖关系可能不一样，有些是单向依赖，有些是双向依赖，这个其实关系不大，后面会看到它们的依赖关系都是为了把处理用户行为触发的业务逻辑的处理权交给Controller。</p>
+<h4 id="MVC的调用关系"><a href="#MVC的调用关系" class="headerlink" title="MVC的调用关系"></a>MVC的调用关系</h4><p>用户的对View操作以后，View捕获到这个操作，会把处理的权利交移给Controller（Pass calls）；Controller接着会执行相关的业务逻辑，这些业务逻辑可能需要对Model进行相应的操作；当Model变更了以后，会通过观察者模式（Observer Pattern）通知View；View通过观察者模式收到Model变更的消息以后，会向Model请求最新的数据，然后重新更新界面。如下图：</p>
+<p><img src="/images/1635594-d09edc47159aedaf.png" alt=""></p>
+<p>看似没有什么特别的地方，但是由几个需要特别关注的关键点：</p>
+<ul>
+<li><p>View是把控制权交移给Controller，自己不执行业务逻辑。</p>
+</li>
+<li><p>Controller执行业务逻辑并且操作Model，但不会直接操作View，可以说它是对View无知的。</p>
+</li>
+<li><p>View和Model的同步消息是通过观察者模式进行，而同步操作是由View自己请求Model的数据然后对视图进行更新。</p>
+</li>
+</ul>
+<p>需要特别注意的是MVC模式的精髓在于第三点：Model的更新是通过观察者模式告知View的，具体表现形式可以是Pub/Sub或者是触发Events。而网上很多对于MVC的描述都没有强调这一点。通过观察者模式的好处就是：不同的MVC三角关系可能会有共同的Model，一个MVC三角中的Controller操作了Model以后，两个MVC三角的View都会接受到通知，然后更新自己。保持了依赖同一块Model的不同View显示数据的实时性和准确性。我们每天都在用的观察者模式，在几十年前就已经被大神们整合到MVC的架构当中。</p>
+<p>这里有一个MVC模式的<a href="https://github.com/livoras/MVW-demos/tree/master/src/scripts/mvc" target="_blank" rel="noopener">JavaScript Demo</a>，实现了一个小的TodoList应用程序。经典的Smalltalk-80 MVC不需要任何框架支持就可以实现。目前Web前端框架当中只有一个号称是严格遵循Smalltalk-80 MVC模式的：<a href="https://github.com/petermichaux/maria" target="_blank" rel="noopener">maria.js</a>。</p>
+<h4 id="MVC的优缺点"><a href="#MVC的优缺点" class="headerlink" title="MVC的优缺点"></a>MVC的优缺点</h4><p>优点：</p>
+<ul>
+<li><p>把业务逻辑全部分离到Controller中，模块化程度高。当业务逻辑变更的时候，不需要变更View和Model，只需要Controller换成另外一个Controller就行了（Swappable Controller）。</p>
+</li>
+<li><p>观察者模式可以做到多视图同时更新。</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>Controller测试困难。因为视图同步操作是由View自己执行，而View只能在有UI的环境下运行。在没有UI环境下对Controller进行单元测试的时候，Controller业务逻辑的正确性是无法验证的：Controller更新Model的时候，无法对View的更新操作进行断言。</p>
+</li>
+<li><p>View无法组件化。View是强依赖特定的Model的，如果需要把这个View抽出来作为一个另外一个应用程序可复用的组件就困难了。因为不同程序的的Domain Model是不一样的</p>
+</li>
+</ul>
+<h3 id="MVC-Model-2"><a href="#MVC-Model-2" class="headerlink" title="MVC Model 2"></a>MVC Model 2</h3><p>在Web服务端开发的时候也会接触到MVC模式，而这种MVC模式不能严格称为MVC模式。经典的MVC模式只是解决客户端图形界面应用程序的问题，而对服务端无效。服务端的MVC模式又自己特定的名字：MVC Model 2，或者叫JSP Model 2，或者直接就是Model 2 。Model 2客户端服务端的交互模式如下：</p>
+<p><img src="/images/1635594-39939b59850392ff.png" alt=""></p>
+<p>服务端接收到来自客户端的请求，服务端通过路由规则把这个请求交由给特定的Controller进行处理，Controller执行相应的业务逻辑，对数据库数据（Model）进行操作，然后用数据去渲染特定的模版，返回给客户端。</p>
+<p>因为HTTP协议是单工协议并且是无状态的，服务器无法直接给客户端推送数据。除非客户端再次发起请求，否则服务器端的Model的变更就无法告知客户端。所以可以看到经典的Smalltalk-80 MVC中Model通过观察者模式告知View更新这一环被无情地打破，不能称为严格的MVC。</p>
+<p>Model 2模式最早在1998年应用在JSP应用程序当中，JSP Model 1应用管理的混乱诱发了JSP参考了客户端MVC模式，催生了Model 2。</p>
+<p><img src="/images/1635594-14382f4f44134a18.png" alt=""></p>
+<p>后来这种模式几乎被应用在所有语言的Web开发框架当中。PHP的ThinkPHP，Python的Dijango、Flask，NodeJS的Express，Ruby的RoR，基本都采纳了这种模式。平常所讲的MVC基本是这种服务端的MVC。</p>
+<h3 id="MVP"><a href="#MVP" class="headerlink" title="MVP"></a>MVP</h3><p>MVP模式有两种：</p>
+<ul>
+<li><p>Passive View</p>
+</li>
+<li><p>Supervising Controller</p>
+</li>
+</ul>
+<p>而大多数情况下讨论的都是Passive View模式。本文会对PV模式进行较为详细的介绍，而SC模式则简单提及。</p>
+<h4 id="历史背景-1"><a href="#历史背景-1" class="headerlink" title="历史背景"></a>历史背景</h4><p>MVP模式是MVC模式的改良。在上个世纪90年代，IBM旗下的子公司Taligent在用C/C++开发一个叫CommonPoint的图形界面应用系统的时候提出来的。</p>
+<h4 id="MVP（Passive-View）的依赖关系"><a href="#MVP（Passive-View）的依赖关系" class="headerlink" title="MVP（Passive View）的依赖关系"></a>MVP（Passive View）的依赖关系</h4><p>MVP模式把MVC模式中的Controller换成了Presenter。MVP层次之间的依赖关系如下：</p>
+<p><img src="/images/1635594-1762fccf7a4a8513.png" alt=""></p>
+<p>MVP打破了View原来对于Model的依赖，其余的依赖关系和MVC模式一致。</p>
+<p>MVP（Passive View）的调用关系<br>既然View对Model的依赖被打破了，那View如何同步Model的变更？看看MVP的调用关系：</p>
+<p><img src="/images/1635594-9794248b2d551204.png" alt=""></p>
+<p>和MVC模式一样，用户对View的操作都会从View交移给Presenter。Presenter同样的会执行相应的业务逻辑，并且对Model进行相应的操作；而这时候Model也是通过观察者模式把自己变更的消息传递出去，但是是传给Presenter而不是View。Presenter获取到Model变更的消息以后，<em>通过View提供的接口更新界面。</em></p>
+<p>关键点：</p>
+<ul>
+<li><p>View不再负责同步的逻辑，而是由Presenter负责。Presenter中既有业务逻辑也有同步逻辑。</p>
+</li>
+<li><p>View需要提供操作界面的接口给Presenter进行调用。（关键）</p>
+</li>
+</ul>
+<p>对比在MVC中，Controller是不能操作View的，View也没有提供相应的接口；而在MVP当中，Presenter可以操作View，View需要提供一组对界面操作的接口给Presenter进行调用；Model仍然通过事件广播自己的变更，但由Presenter监听而不是View。</p>
+<p>MVP模式，这里也提供一个用<a href="https://github.com/livoras/MVW-demos/tree/master/src/scripts/mvp" target="_blank" rel="noopener">JavaScript编写的例子。</a></p>
+<h4 id="MVP（Passive-View）的优缺点"><a href="#MVP（Passive-View）的优缺点" class="headerlink" title="MVP（Passive View）的优缺点"></a>MVP（Passive View）的优缺点</h4><p>优点：</p>
+<ul>
+<li><p>便于测试。Presenter对View是通过接口进行，在对Presenter进行不依赖UI环境的单元测试的时候。可以通过Mock一个View对象，这个对象只需要实现了View的接口即可。然后依赖注入到Presenter中，单元测试的时候就可以完整的测试Presenter业务逻辑的正确性。这里根据上面的例子给出了Presenter的单元测试样例。</p>
+</li>
+<li><p>View可以进行组件化。在MVP当中，View不依赖Model。这样就可以让View从特定的业务场景中脱离出来，可以说View可以做到对业务逻辑完全无知。它只需要提供一系列接口提供给上层操作。这样就可以做高度可复用的View组件。</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>Presenter中除了业务逻辑以外，还有大量的View-&gt;Model，Model-&gt;View的手动同步逻辑，造成Presenter比较笨重，维护起来会比较困难。</li>
+</ul>
+<h4 id="MVP（Supervising-Controller）"><a href="#MVP（Supervising-Controller）" class="headerlink" title="MVP（Supervising Controller）"></a>MVP（Supervising Controller）</h4><p>上面讲的是MVP的Passive View模式，该模式下View非常Passive，它几乎什么都不知道，Presenter让它干什么它就干什么。而Supervising Controller模式中，Presenter会把一部分简单的同步逻辑交给View自己去做，Presenter只负责比较复杂的、高层次的UI操作，所以可以把它看成一个Supervising Controller。</p>
+<p>Supervising Controller模式下的依赖和调用关系：</p>
+<p><img src="/images/1635594-eb35f65886d201b0.png" alt=""></p>
+<p>因为Supervising Controller用得比较少，对它的讨论就到这里为止。</p>
+<h3 id="MVVM"><a href="#MVVM" class="headerlink" title="MVVM"></a>MVVM</h3><p>MVVM可以看作是一种特殊的MVP（Passive View）模式，或者说是对MVP模式的一种改良。</p>
+<h4 id="历史背景-2"><a href="#历史背景-2" class="headerlink" title="历史背景"></a>历史背景</h4><p>MVVM模式最早是微软公司提出，并且了大量使用在.NET的WPF和Sliverlight中。2005年微软工程师John Gossman在自己的<a href="https://blogs.msdn.microsoft.com/johngossman/2005/10/08/introduction-to-modelviewviewmodel-pattern-for-building-wpf-apps/" target="_blank" rel="noopener">博客</a>上首次公布了MVVM模式。</p>
+<h4 id="ViewModel"><a href="#ViewModel" class="headerlink" title="ViewModel"></a>ViewModel</h4><p>MVVM代表的是Model-View-ViewModel，这里需要解释一下什么是ViewModel。ViewModel的含义就是 “Model of View”，视图的模型。它的含义包含了领域模型（Domain Model）和视图的状态（State）。 在图形界面应用程序当中，界面所提供的信息可能不仅仅包含应用程序的领域模型。还可能包含一些领域模型不包含的视图状态，例如电子表格程序上需要显示当前排序的状态是顺序的还是逆序的，而这是Domain Model所不包含的，但也是需要显示的信息。</p>
+<p>可以简单把ViewModel理解为页面上所显示内容的数据抽象，和Domain Model不一样，ViewModel更适合用来描述View。</p>
+<h4 id="MVVM的依赖"><a href="#MVVM的依赖" class="headerlink" title="MVVM的依赖"></a>MVVM的依赖</h4><p>MVVM的依赖关系和MVP依赖，只不过是把P换成了VM。</p>
+<p><img src="/images/1635594-aa2ff049f9605d3a.png" alt=""></p>
+<h4 id="MVVM的调用关系"><a href="#MVVM的调用关系" class="headerlink" title="MVVM的调用关系"></a>MVVM的调用关系</h4><p>MVVM的调用关系和MVP一样。但是，在ViewModel当中会有一个叫Binder，或者是Data-binding engine的东西。以前全部由Presenter负责的View和Model之间数据同步操作交由给Binder处理。你只需要在View的模版语法当中，指令式地声明View上的显示的内容是和Model的哪一块数据绑定的。当ViewModel对进行Model更新的时候，Binder会自动把数据更新到View上去，当用户对View进行操作（例如表单输入），Binder也会自动把数据更新到Model上去。这种方式称为：Two-way data-binding，双向数据绑定。可以简单而不恰当地理解为一个模版引擎，但是会根据数据变更实时渲染。</p>
+<p><img src="/images/1635594-678b46998948b373.png" alt=""></p>
+<p>也就是说，MVVM把View和Model的同步逻辑自动化了。以前Presenter负责的View和Model同步不再手动地进行操作，而是交由框架所提供的Binder进行负责。只需要告诉Binder，View显示的数据对应的是Model哪一部分即可。</p>
+<p>这里有一个JavaScript MVVM的<a href="https://github.com/livoras/MVW-demos/blob/master/src/scripts/mvvm.js" target="_blank" rel="noopener">例子</a>，因为MVVM需要Binder引擎。所以例子中使用了一个MVVM的库：<a href="http://vuejs.org/" target="_blank" rel="noopener">Vue.js</a>。</p>
+<h4 id="MVVM的优缺点"><a href="#MVVM的优缺点" class="headerlink" title="MVVM的优缺点"></a>MVVM的优缺点</h4><p>优点：</p>
+<ul>
+<li><p>提高可维护性。解决了MVP大量的手动View和Model同步的问题，提供双向绑定机制。提高了代码的可维护性。</p>
+</li>
+<li><p>简化测试。因为同步逻辑是交由Binder做的，View跟着Model同时变更，所以只需要保证Model的正确性，View就正确。大大减少了对View同步更新的测试。</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>过于简单的图形界面不适用，或说牛刀杀鸡。</p>
+</li>
+<li><p>对于大型的图形应用程序，视图状态较多，ViewModel的构建和维护的成本都会比较高。</p>
+</li>
+<li><p>数据绑定的声明是指令式地写在View的模版当中的，这些内容是没办法去打断点debug的。</p>
+</li>
+</ul>
+<h3 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h3><p>可以看到，从MVC-&gt;MVP-&gt;MVVM，就像一个打怪升级的过程。后者解决了前者遗留的问题，把前者的缺点优化成了优点。同样的Demo功能，代码从最开始的一堆文件，优化成了最后只需要20几行代码就完成。MV*模式之间的区分还是蛮清晰的，希望可以给对这些模式理解比较模糊的同学带来一些参考和思路。</p>
+<h3 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h3><p><a href="">Scaling Isomorphic Javascript Code</a></p>
+<p><a href="">Smalltalk-80 MVC</a></p>
+<p><a href="">Learning JavaScript Design Patterns</a></p>
+<p><a href="">Smalltalk-80 MVC in JavaScript</a></p>
+<p><a href="">GUI Architectures</a></p>
+<p><a href="">The Model-View-Presenter (MVP) Pattern</a></p>
+<p>转摘：<a href="http://www.linuxidc.com/Linux/2015-10/124622.htm" target="_blank" rel="noopener">http://www.linuxidc.com/Linux/2015-10/124622.htm</a></p>
 
       
     </div>
@@ -498,9 +609,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/C/" rel="tag"># C++</a>
+            <a href="/tags/MVC/" rel="tag"># MVC</a>
           
-            <a href="/tags/高阶函数/" rel="tag"># 高阶函数</a>
+            <a href="/tags/MVP/" rel="tag"># MVP</a>
+          
+            <a href="/tags/MVVM/" rel="tag"># MVVM</a>
           
         </div>
       
@@ -513,8 +626,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/06/20/C++ lambda表达式/" rel="next" title="C++ lambda表达式">
-                <i class="fa fa-chevron-left"></i> C++ lambda表达式
+              <a href="/2018/01/10/用C进行面向对象编程/" rel="next" title="用C进行面向对象编程">
+                <i class="fa fa-chevron-left"></i> 用C进行面向对象编程
               </a>
             
           </div>
@@ -522,10 +635,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/03/11/cmake-教程/" rel="prev" title="cmake 教程">
-                cmake 教程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -681,7 +790,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#高阶函数是至少满足下列一个条件的函数"><span class="nav-number">1.</span> <span class="nav-text">高阶函数是至少满足下列一个条件的函数:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三种求和方式"><span class="nav-number"></span> <span class="nav-text">三种求和方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#lambda表达式实现高阶函数"><span class="nav-number"></span> <span class="nav-text">lambda表达式实现高阶函数</span></a></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GUI程序面临的问题"><span class="nav-number">2.</span> <span class="nav-text">GUI程序面临的问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Smalltalk-80-MVC"><span class="nav-number">3.</span> <span class="nav-text">Smalltalk-80 MVC</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史背景"><span class="nav-number">3.1.</span> <span class="nav-text">历史背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC的依赖关系"><span class="nav-number">3.2.</span> <span class="nav-text">MVC的依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC的调用关系"><span class="nav-number">3.3.</span> <span class="nav-text">MVC的调用关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVC的优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">MVC的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVC-Model-2"><span class="nav-number">4.</span> <span class="nav-text">MVC Model 2</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVP"><span class="nav-number">5.</span> <span class="nav-text">MVP</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史背景-1"><span class="nav-number">5.1.</span> <span class="nav-text">历史背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP（Passive-View）的依赖关系"><span class="nav-number">5.2.</span> <span class="nav-text">MVP（Passive View）的依赖关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP（Passive-View）的优缺点"><span class="nav-number">5.3.</span> <span class="nav-text">MVP（Passive View）的优缺点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVP（Supervising-Controller）"><span class="nav-number">5.4.</span> <span class="nav-text">MVP（Supervising Controller）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MVVM"><span class="nav-number">6.</span> <span class="nav-text">MVVM</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#历史背景-2"><span class="nav-number">6.1.</span> <span class="nav-text">历史背景</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ViewModel"><span class="nav-number">6.2.</span> <span class="nav-text">ViewModel</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM的依赖"><span class="nav-number">6.3.</span> <span class="nav-text">MVVM的依赖</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM的调用关系"><span class="nav-number">6.4.</span> <span class="nav-text">MVVM的调用关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MVVM的优缺点"><span class="nav-number">6.5.</span> <span class="nav-text">MVVM的优缺点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#结语"><span class="nav-number">7.</span> <span class="nav-text">结语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reference"><span class="nav-number">8.</span> <span class="nav-text">reference</span></a></li></ol></div>
             
 
           </div>
@@ -858,9 +967,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2016/07/21/C++ 高阶函数/';
-          this.page.identifier = '2016/07/21/C++ 高阶函数/';
-          this.page.title = 'C++ 高阶函数';
+          this.page.url = 'http://yoursite.com/2018/02/07/说说MVC，MVP和MVVM/';
+          this.page.identifier = '2018/02/07/说说MVC，MVP和MVVM/';
+          this.page.title = '说说MVC，MVP和MVVM';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://hezhenzhensite.disqus.com/embed.js';
