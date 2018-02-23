@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="bash," />
+
+
+
+
+
+
+
+
+
+
+<meta name="keywords" content="bash">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bash-guide">
+<meta property="og:url" content="http://yoursite.com/2018/02/23/bash-guide/index.html">
+<meta property="og:site_name" content="hz&#39;s blog">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/2059754/24601246/753a7f36-1858-11e7-9d6b-7a0e64fb27f7.png">
+<meta property="og:image" content="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg">
+<meta property="og:updated_time" content="2018-02-23T05:13:04.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="bash-guide">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/2059754/24601246/753a7f36-1858-11e7-9d6b-7a0e64fb27f7.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/23/bash-guide/"/>
+
+
+
+
+
+  <title>bash-guide | hz's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?c6b14cead504cb7b4b5cdc81f3a68bf4";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hz's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-schedule">
+          <a href="/schedule/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar"></i> <br />
+            
+            日程表
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            站点地图
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/23/bash-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hz's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">bash-guide</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-23T13:09:22+08:00">
+                2018-02-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/shell/" itemprop="url" rel="index">
+                    <span itemprop="name">shell</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/23/bash-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/23/bash-guide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p align="center"><br>  <img src="https://cloud.githubusercontent.com/assets/2059754/24601246/753a7f36-1858-11e7-9d6b-7a0e64fb27f7.png" alt="bash logo"><br></p>
+
+<a id="more"></a>
+<h2 id="Table-of-Contents"><a href="#Table-of-Contents" class="headerlink" title="Table of Contents"></a>Table of Contents</h2><ol>
+<li><a href="#1-basic-operations">Basic Operations</a><br>1.1. <a href="#11-file-operations">File Operations</a><br>1.2. <a href="#12-text-operations">Text Operations</a><br>1.3. <a href="#13-directory-operations">Directory Operations</a><br>1.4. <a href="#14-ssh-system-info--network-operations">SSH, System Info &amp; Network Operations</a><br>1.5. <a href="#15-process-monitoring-operations">Process Monitoring Operations</a></li>
+<li><a href="#2-basic-shell-programming">Basic Shell Programming</a><br>2.1. <a href="#21-variables">Variables</a><br>2.2. <a href="#22-array">Array</a><br>2.3. <a href="#23-string-substitution">String Substitution</a><br>2.4. <a href="#24-functions">Functions</a><br>2.5. <a href="#25-conditionals">Conditionals</a><br>2.6. <a href="#26-loops">Loops</a>  </li>
+<li><a href="#3-tricks">Tricks</a>  </li>
+<li><a href="#4-debugging">Debugging</a>  </li>
+</ol>
+<h1 id="1-Basic-Operations"><a href="#1-Basic-Operations" class="headerlink" title="1. Basic Operations"></a>1. Basic Operations</h1><h3 id="a-export"><a href="#a-export" class="headerlink" title="a. export"></a>a. <code>export</code></h3><p>Displays all environment variables. If you want to get details of a specific variable, use <code>echo $VARIABLE_NAME</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span></span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">export</span></span><br><span class="line">AWS_HOME=/Users/adnanadnan/.aws</span><br><span class="line">LANG=en_US.UTF-8</span><br><span class="line">LC_CTYPE=en_US.UTF-8</span><br><span class="line">LESS=-R</span><br><span class="line"></span><br><span class="line">$ <span class="built_in">echo</span> <span class="variable">$AWS_HOME</span></span><br><span class="line">/Users/adnanadnan/.aws</span><br></pre></td></tr></table></figure></p>
+<h3 id="b-whatis"><a href="#b-whatis" class="headerlink" title="b. whatis"></a>b. <code>whatis</code></h3><p>whatis shows description for user commands, system calls, library functions, and others in manual pages<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whatis something</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ whatis bash</span><br><span class="line">bash (1)             - GNU Bourne-Again SHell</span><br></pre></td></tr></table></figure></p>
+<h3 id="c-whereis"><a href="#c-whereis" class="headerlink" title="c. whereis"></a>c. <code>whereis</code></h3><p>whereis searches for executables, source files, and manual pages using a database built by system automatically.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whereis name</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ whereis php</span><br><span class="line">/usr/bin/php</span><br></pre></td></tr></table></figure></p>
+<h3 id="d-which"><a href="#d-which" class="headerlink" title="d. which"></a>d. <code>which</code></h3><p>which searches for executables in the directories specified by the environment variable PATH. This command will print the full path of the executable(s).<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">which</span> program_name</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">which</span> php</span><br><span class="line">/c/xampp/php/php</span><br></pre></td></tr></table></figure></p>
+<h3 id="e-clear"><a href="#e-clear" class="headerlink" title="e. clear"></a>e. clear</h3><p>Clears content on window.</p>
+<h2 id="1-1-File-Operations"><a href="#1-1-File-Operations" class="headerlink" title="1.1. File Operations"></a>1.1. File Operations</h2><table><br>   <tr><br>      <td><a href="#a-cat">cat</a></td><br>      <td><a href="#b-chmod">chmod</a></td><br>      <td><a href="#c-chown">chown</a></td><br>      <td><a href="#d-cp">cp</a></td><br>      <td><a href="#e-diff">diff</a></td><br>      <td><a href="#f-file">file</a></td><br>      <td><a href="#g-find">find</a></td><br>      <td><a href="#h-gunzip">gunzip</a></td><br>      <td><a href="#i-gzcat">gzcat</a></td><br>      <td><a href="#j-gzip">gzip</a></td><br>      <td><a href="#k-head">head</a></td><br>   </tr><br>   <tr><br>      <td><a href="#l-lpq">lpq</a></td><br>      <td><a href="#m-lpr">lpr</a></td><br>      <td><a href="#n-lprm">lprm</a></td><br>      <td><a href="#o-ls">ls</a></td><br>      <td><a href="#p-more">more</a></td><br>      <td><a href="#q-mv">mv</a></td><br>      <td><a href="#r-rm">rm</a></td><br>      <td><a href="#s-tail">tail</a></td><br>      <td><a href="#t-touch">touch</a></td><br>   </tr><br></table>
+
+<h3 id="a-cat"><a href="#a-cat" class="headerlink" title="a. cat"></a>a. <code>cat</code></h3><p>It can be used for the following purposes under UNIX or Linux.  </p>
+<ul>
+<li>Display text files on screen</li>
+<li>Copy text files  </li>
+<li>Combine text files  </li>
+<li>Create new text files  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cat filename</span><br><span class="line">cat file1 file2 </span><br><span class="line">cat file1 file2 &gt; newcombinedfile</span><br><span class="line">cat &lt; file1 &gt; file2 <span class="comment">#copy file1 to file2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="b-chmod"><a href="#b-chmod" class="headerlink" title="b. chmod"></a>b. <code>chmod</code></h3><p>The chmod command stands for “change mode” and allows you to change the read, write, and execute permissions on your files and folders. For more information on this command check this <a href="https://ss64.com/bash/chmod.html" target="_blank" rel="noopener">link</a>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod -options filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="c-chown"><a href="#c-chown" class="headerlink" title="c. chown"></a>c. <code>chown</code></h3><p>The chown command stands for “change owner”, and allows you to change the owner of a given file or folder, which can be a user and a group. Basic usage is simple forward first comes the user (owner), and then the group, delimited by a colon.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -options user:group filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="d-cp"><a href="#d-cp" class="headerlink" title="d. cp"></a>d. <code>cp</code></h3><p>Copies a file from one location to other.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp filename1 filename2</span><br></pre></td></tr></table></figure></p>
+<p>Where <code>filename1</code> is the source path to the file and <code>filename2</code> is the destination path to the file.</p>
+<h3 id="e-diff"><a href="#e-diff" class="headerlink" title="e. diff"></a>e. <code>diff</code></h3><p>Compares files, and lists their differences.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">diff filename1 filename2</span><br></pre></td></tr></table></figure></p>
+<h3 id="f-file"><a href="#f-file" class="headerlink" title="f. file"></a>f. <code>file</code></h3><p>Determine file type.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">file filename</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ file index.html</span><br><span class="line"> index.html: HTML document, ASCII text</span><br></pre></td></tr></table></figure></p>
+<h3 id="g-find"><a href="#g-find" class="headerlink" title="g. find"></a>g. <code>find</code></h3><p>Find files in directory<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find directory options pattern</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ find . -name README.md</span><br><span class="line">$ find /home/user1 -name <span class="string">'*.png'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="h-gunzip"><a href="#h-gunzip" class="headerlink" title="h. gunzip"></a>h. <code>gunzip</code></h3><p>Un-compresses files compressed by gzip.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gunzip filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="i-gzcat"><a href="#i-gzcat" class="headerlink" title="i. gzcat"></a>i. <code>gzcat</code></h3><p>Lets you look at gzipped file without actually having to gunzip it.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzcat filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="j-gzip"><a href="#j-gzip" class="headerlink" title="j. gzip"></a>j. <code>gzip</code></h3><p>Compresses files.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gzip filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="k-head"><a href="#k-head" class="headerlink" title="k. head"></a>k. <code>head</code></h3><p>Outputs the first 10 lines of file<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">head filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="l-lpq"><a href="#l-lpq" class="headerlink" title="l. lpq"></a>l. <code>lpq</code></h3><p>Check out the printer queue.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpq</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ lpq</span><br><span class="line">Rank    Owner   Job     File(s)                         Total Size</span><br><span class="line">active  adnanad 59      demo                            399360 bytes</span><br><span class="line">1st     adnanad 60      (stdin)                         0 bytes</span><br></pre></td></tr></table></figure></p>
+<h3 id="m-lpr"><a href="#m-lpr" class="headerlink" title="m. lpr"></a>m. <code>lpr</code></h3><p>Print the file.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lpr filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="n-lprm"><a href="#n-lprm" class="headerlink" title="n. lprm"></a>n. <code>lprm</code></h3><p>Remove something from the printer queue.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lprm jobnumber</span><br></pre></td></tr></table></figure></p>
+<h3 id="o-ls"><a href="#o-ls" class="headerlink" title="o. ls"></a>o. <code>ls</code></h3><p>Lists your files. <code>ls</code> has many options: <code>-l</code> lists files in ‘long format’, which contains the exact size of the file, who owns the file, who has the right to look at it, and when it was last modified. <code>-a</code> lists all files, including hidden files. For more information on this command check this <a href="https://ss64.com/bash/ls.html" target="_blank" rel="noopener">link</a>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls option</span><br></pre></td></tr></table></figure></p>
+<p>Example:</p>
+<pre>
+$ ls -la
+rwxr-xr-x   33 adnan  staff    1122 Mar 27 18:44 .
+drwxrwxrwx  60 adnan  staff    2040 Mar 21 15:06 ..
+-rw-r--r--@  1 adnan  staff   14340 Mar 23 15:05 .DS_Store
+-rw-r--r--   1 adnan  staff     157 Mar 25 18:08 .bumpversion.cfg
+-rw-r--r--   1 adnan  staff    6515 Mar 25 18:08 .config.ini
+-rw-r--r--   1 adnan  staff    5805 Mar 27 18:44 .config.override.ini
+drwxr-xr-x  17 adnan  staff     578 Mar 27 23:36 .git
+-rwxr-xr-x   1 adnan  staff    2702 Mar 25 18:08 .gitignore
+</pre>
+
+<h3 id="p-more"><a href="#p-more" class="headerlink" title="p. more"></a>p. <code>more</code></h3><p>Shows the first part of a file (move with space and type q to quit).<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="q-mv"><a href="#q-mv" class="headerlink" title="q. mv"></a>q. <code>mv</code></h3><p>Moves a file from one location to other.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv filename1 filename2</span><br></pre></td></tr></table></figure></p>
+<p>Where <code>filename1</code> is the source path to the file and <code>filename2</code> is the destination path to the file.</p>
+<p>Also it can be used for rename a file.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv old_name new_name</span><br></pre></td></tr></table></figure></p>
+<h3 id="r-rm"><a href="#r-rm" class="headerlink" title="r. rm"></a>r. <code>rm</code></h3><p>Removes a file. Using this command on a directory gives you an error.<br><code>rm: directory: is a directory</code><br>To remove a directory you have to pass <code>-r</code> which will remove the content of the directory recursively. Optionally you can use <code>-f</code> flag to force the deletion i.e. without any confirmations etc.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="s-tail"><a href="#s-tail" class="headerlink" title="s. tail"></a>s. <code>tail</code></h3><p>Outputs the last 10 lines of file. Use <code>-f</code> to output appended data as the file grows.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tail filename</span><br></pre></td></tr></table></figure></p>
+<h3 id="t-touch"><a href="#t-touch" class="headerlink" title="t. touch"></a>t. <code>touch</code></h3><p>Updates access and modification time stamps of your file. If it doesn’t exists, it’ll be created.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch filename</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ touch trick.md</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-2-Text-Operations"><a href="#1-2-Text-Operations" class="headerlink" title="1.2. Text Operations"></a>1.2. Text Operations</h2><table><br>    <tr><br>      <td><a href="#a-awk">awk</a></td><br>      <td><a href="#b-cut">cut</a></td><br>      <td><a href="#c-echo">echo</a></td><br>      <td><a href="#d-egrep">egrep</a></td><br>      <td><a href="#e-fgrep">fgrep</a></td><br>      <td><a href="#f-fmt">fmt</a></td><br>      <td><a href="#g-grep">grep</a></td><br>      <td><a href="#h-nl">nl</a></td><br>      <td><a href="#i-sed">sed</a></td><br>      <td><a href="#j-sort">sort</a></td><br>   </tr><br>   <tr><br>      <td><a href="#k-tr">tr</a></td><br>      <td><a href="#l-uniq">uniq</a></td><br>      <td><a href="#m-wc">wc</a></td><br>   </tr><br></table>
+
+<h3 id="a-awk"><a href="#a-awk" class="headerlink" title="a. awk"></a>a. <code>awk</code></h3><p>awk is the most useful command for handling text files. It operates on an entire file line by line. By default it uses whitespace to separate the fields. The most common syntax for awk command is</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk <span class="string">'/search_pattern/ &#123; action_to_take_if_pattern_matches; &#125;'</span> file_to_parse</span><br></pre></td></tr></table></figure>
+<p>Lets take following file <code>/etc/passwd</code>. Here’s the sample data that this file contains:<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">root:</span><span class="symbol">x:</span><span class="number">0</span><span class="symbol">:</span><span class="number">0</span><span class="symbol">:root</span><span class="symbol">:/root</span><span class="symbol">:/usr/bin/zsh</span></span><br><span class="line"><span class="symbol">daemon:</span><span class="symbol">x:</span><span class="number">1</span><span class="symbol">:</span><span class="number">1</span><span class="symbol">:daemon</span><span class="symbol">:/usr/sbin</span><span class="symbol">:/usr/sbin/nologin</span></span><br><span class="line"><span class="symbol">bin:</span><span class="symbol">x:</span><span class="number">2</span><span class="symbol">:</span><span class="number">2</span><span class="symbol">:bin</span><span class="symbol">:/bin</span><span class="symbol">:/usr/sbin/nologin</span></span><br><span class="line"><span class="symbol">sys:</span><span class="symbol">x:</span><span class="number">3</span><span class="symbol">:</span><span class="number">3</span><span class="symbol">:sys</span><span class="symbol">:/dev</span><span class="symbol">:/usr/sbin/nologin</span></span><br><span class="line"><span class="symbol">sync:</span><span class="symbol">x:</span><span class="number">4</span><span class="symbol">:</span><span class="number">65534</span><span class="symbol">:sync</span><span class="symbol">:/bin</span><span class="symbol">:/bin/sync</span></span><br></pre></td></tr></table></figure></p>
+<p>So now lets get only username from this file. Where <code>-F</code> specifies that on which base we are going to separate the fields. In our case it’s <code>:</code>. <code>{ print $1 }</code> means print out the first matching field.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">awk -F<span class="string">':'</span> <span class="string">'&#123; print $1 &#125;'</span> /etc/passwd</span><br></pre></td></tr></table></figure></p>
+<p>After running the above command you will get following output.<br><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">root</span></span><br><span class="line"><span class="symbol">daemon</span></span><br><span class="line"><span class="keyword">bin</span></span><br><span class="line"><span class="keyword">sys</span></span><br><span class="line"><span class="keyword">sync</span></span><br></pre></td></tr></table></figure></p>
+<p>For more detail on how to use <code>awk</code>, check following <a href="https://www.cyberciti.biz/faq/bash-scripting-using-awk" target="_blank" rel="noopener">link</a>.</p>
+<h3 id="b-cut"><a href="#b-cut" class="headerlink" title="b. cut"></a>b. <code>cut</code></h3><p>Remove sections from each line of files</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">red riding hood went to the park to play</span><br></pre></td></tr></table></figure></p>
+<p><em>show me columns 2 , 7 , and 9 with a space as a separator</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cut -d <span class="string">" "</span> -f2,7,9 example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">riding park play</span><br></pre></td></tr></table></figure>
+<h3 id="c-echo"><a href="#c-echo" class="headerlink" title="c. echo"></a>c. <code>echo</code></h3><p>Display a line of text</p>
+<p><em>display “Hello World”</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> Hello World</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World</span><br></pre></td></tr></table></figure>
+<p><em>display “Hello World” with newlines between words</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> -ne <span class="string">"Hello\nWorld\n"</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hello</span><br><span class="line">World</span><br></pre></td></tr></table></figure>
+<h3 id="d-egrep"><a href="#d-egrep" class="headerlink" title="d. egrep"></a>d. <code>egrep</code></h3><p>Print lines matching a pattern - Extended Expression (alias for: ‘grep -E’)</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum</span><br><span class="line">dolor sit amet, </span><br><span class="line">consetetur</span><br><span class="line">sadipscing elitr,</span><br><span class="line">sed diam nonumy</span><br><span class="line">eirmod tempor</span><br><span class="line">invidunt ut labore</span><br><span class="line">et dolore magna</span><br><span class="line">aliquyam erat, sed</span><br><span class="line">diam voluptua. At</span><br><span class="line">vero eos et</span><br><span class="line">accusam et justo</span><br><span class="line">duo dolores et ea</span><br><span class="line">rebum. Stet clita</span><br><span class="line">kasd gubergren,</span><br><span class="line">no sea takimata</span><br><span class="line">sanctus est Lorem</span><br><span class="line">ipsum dolor sit</span><br><span class="line">amet.</span><br></pre></td></tr></table></figure></p>
+<p><em>display lines that have either “Lorem” or “dolor” in them.</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">egrep <span class="string">'(Lorem|dolor)'</span> example.txt</span><br><span class="line">or</span><br><span class="line">grep -E <span class="string">'(Lorem|dolor)'</span> example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum</span><br><span class="line">dolor sit amet,</span><br><span class="line">et dolore magna</span><br><span class="line">duo dolores et ea</span><br><span class="line">sanctus est Lorem</span><br><span class="line">ipsum dolor sit</span><br></pre></td></tr></table></figure>
+<h3 id="e-fgrep"><a href="#e-fgrep" class="headerlink" title="e. fgrep"></a>e. <code>fgrep</code></h3><p>Print lines matching a pattern - FIXED pattern matching  (alias for: ‘grep -F’)</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum</span><br><span class="line">dolor sit amet,</span><br><span class="line">consetetur</span><br><span class="line">sadipscing elitr,</span><br><span class="line">sed diam nonumy</span><br><span class="line">eirmod tempor</span><br><span class="line">foo (Lorem|dolor) </span><br><span class="line">invidunt ut labore</span><br><span class="line">et dolore magna</span><br><span class="line">aliquyam erat, sed</span><br><span class="line">diam voluptua. At</span><br><span class="line">vero eos et</span><br><span class="line">accusam et justo</span><br><span class="line">duo dolores et ea</span><br><span class="line">rebum. Stet clita</span><br><span class="line">kasd gubergren,</span><br><span class="line">no sea takimata</span><br><span class="line">sanctus est Lorem</span><br><span class="line">ipsum dolor sit</span><br><span class="line">amet.</span><br></pre></td></tr></table></figure></p>
+<p><em>Find the exact string ‘(Lorem|dolor)’ in example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">fgrep <span class="string">'(Lorem|dolor)'</span> example.txt</span><br><span class="line">or</span><br><span class="line">grep -F <span class="string">'(Lorem|dolor)'</span> example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo (Lorem|dolor)</span><br></pre></td></tr></table></figure>
+<h3 id="f-fmt"><a href="#f-fmt" class="headerlink" title="f. fmt"></a>f. <code>fmt</code></h3><p>Simple optimal text formatter</p>
+<p><em>example: example.txt (1 line)</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</span><br></pre></td></tr></table></figure></p>
+<p><em>output the lines of example.txt to 20 character width</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat example.txt | fmt -w 20</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum</span><br><span class="line">dolor sit amet,</span><br><span class="line">consetetur</span><br><span class="line">sadipscing elitr,</span><br><span class="line">sed diam nonumy</span><br><span class="line">eirmod tempor</span><br><span class="line">invidunt ut labore</span><br><span class="line">et dolore magna</span><br><span class="line">aliquyam erat, sed</span><br><span class="line">diam voluptua. At</span><br><span class="line">vero eos et</span><br><span class="line">accusam et justo</span><br><span class="line">duo dolores et ea</span><br><span class="line">rebum. Stet clita</span><br><span class="line">kasd gubergren,</span><br><span class="line">no sea takimata</span><br><span class="line">sanctus est Lorem</span><br><span class="line">ipsum dolor sit</span><br><span class="line">amet.</span><br></pre></td></tr></table></figure>
+<h3 id="g-grep"><a href="#g-grep" class="headerlink" title="g. grep"></a>g. <code>grep</code></h3><p>Looks for text inside files. You can use grep to search for lines of text that match one or many regular expressions, and outputs only the matching lines.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep pattern filename</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ grep admin /etc/passwd</span><br><span class="line">_kadmin_admin:*:218:-2:Kerberos Admin Service:/var/empty:/usr/bin/<span class="literal">false</span></span><br><span class="line">_kadmin_changepw:*:219:-2:Kerberos Change Password Service:/var/empty:/usr/bin/<span class="literal">false</span></span><br><span class="line">_krb_kadmin:*:231:-2:Open Directory Kerberos Admin Service:/var/empty:/usr/bin/<span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p>You can also force grep to ignore word case by using <code>-i</code> option. <code>-r</code> can be used to search all files under the specified directory, for example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ grep -r admin /etc/</span><br></pre></td></tr></table></figure></p>
+<p>And <code>-w</code> to search for words only. For more detail on <code>grep</code>, check following <a href="https://www.cyberciti.biz/faq/grep-in-bash" target="_blank" rel="noopener">link</a>.</p>
+<h3 id="h-nl"><a href="#h-nl" class="headerlink" title="h. nl"></a>h. <code>nl</code></h3><p>Number lines of files</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">Lorem ipsum</span><br><span class="line">dolor sit amet,</span><br><span class="line">consetetur</span><br><span class="line">sadipscing elitr,</span><br><span class="line">sed diam nonumy</span><br><span class="line">eirmod tempor</span><br><span class="line">invidunt ut labore</span><br><span class="line">et dolore magna</span><br><span class="line">aliquyam erat, sed</span><br><span class="line">diam voluptua. At</span><br><span class="line">vero eos et</span><br><span class="line">accusam et justo</span><br><span class="line">duo dolores et ea</span><br><span class="line">rebum. Stet clita</span><br><span class="line">kasd gubergren,</span><br><span class="line">no sea takimata</span><br><span class="line">sanctus est Lorem</span><br><span class="line">ipsum dolor sit</span><br><span class="line">amet.</span><br></pre></td></tr></table></figure></p>
+<p><em>show example.txt with line numbers</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nl -s<span class="string">". "</span> example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> 1. Lorem ipsum</span><br><span class="line"> 2. dolor sit amet,</span><br><span class="line"> 3. consetetur</span><br><span class="line"> 4. sadipscing elitr,</span><br><span class="line"> 5. sed diam nonumy</span><br><span class="line"> 6. eirmod tempor</span><br><span class="line"> 7. invidunt ut labore</span><br><span class="line"> 8. et dolore magna</span><br><span class="line"> 9. aliquyam erat, sed</span><br><span class="line">10. diam voluptua. At</span><br><span class="line">11. vero eos et</span><br><span class="line">12. accusam et justo</span><br><span class="line">13. duo dolores et ea</span><br><span class="line">14. rebum. Stet clita</span><br><span class="line">15. kasd gubergren,</span><br><span class="line">16. no sea takimata</span><br><span class="line">17. sanctus est Lorem</span><br><span class="line">18. ipsum dolor sit</span><br><span class="line">19. amet.</span><br></pre></td></tr></table></figure>
+<h3 id="i-sed"><a href="#i-sed" class="headerlink" title="i. sed"></a>i. <code>sed</code></h3><p>Stream editor for filtering and transforming text</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Hello This is a Test 1 2 3 4</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">*replace all spaces with hyphens*</span><br><span class="line">```bash</span><br><span class="line">sed <span class="string">'s/ /-/g'</span> example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello-This-is<span class="_">-a</span>-Test-1-2-3-4</span><br></pre></td></tr></table></figure>
+<p><em>replace all digits with “d”</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">'s/[0-9]/d/g'</span> example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello This is a Test d d d d</span><br></pre></td></tr></table></figure>
+<h3 id="j-sort"><a href="#j-sort" class="headerlink" title="j. sort"></a>j. <code>sort</code></h3><p>Sort lines of text files</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">f</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">g</span><br><span class="line">a</span><br><span class="line">e</span><br><span class="line">d</span><br></pre></td></tr></table></figure></p>
+<p><em>sort example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort example.txt</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">e</span><br><span class="line">f</span><br><span class="line">g</span><br></pre></td></tr></table></figure>
+<p><em>randomize a sorted example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort example.txt | sort -R</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">b</span><br><span class="line">f</span><br><span class="line">a</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">g</span><br><span class="line">e</span><br></pre></td></tr></table></figure>
+<h3 id="k-tr"><a href="#k-tr" class="headerlink" title="k. tr"></a>k. <code>tr</code></h3><p>Translate or delete characters</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello World Foo Bar Baz!</span><br></pre></td></tr></table></figure></p>
+<p><em>take all lower case letters and make them upper case</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat example.txt | tr <span class="string">'a-z'</span> <span class="string">'A-Z'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HELLO WORLD FOO BAR BAZ!</span><br></pre></td></tr></table></figure>
+<p><em>take all spaces and make them into newlines</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat example.txt | tr <span class="string">' '</span> <span class="string">'\n'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Hello</span><br><span class="line">World</span><br><span class="line">Foo</span><br><span class="line">Bar</span><br><span class="line">Baz!</span><br></pre></td></tr></table></figure>
+<h3 id="l-uniq"><a href="#l-uniq" class="headerlink" title="l. uniq"></a>l. <code>uniq</code></h3><p>Report or omit repeated lines</p>
+<p><em>example.txt</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br><span class="line">c</span><br></pre></td></tr></table></figure></p>
+<p><em>show only unique lines of example.txt (first you need to sort it, otherwise it won’t see the overlap)</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort example.txt | uniq</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a</span><br><span class="line">b</span><br><span class="line">c</span><br><span class="line">d</span><br></pre></td></tr></table></figure>
+<p><em>show the unique items for each line, and tell me how many instances it found</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sort example.txt | uniq -c</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">3 a</span><br><span class="line">2 b</span><br><span class="line">2 c</span><br><span class="line">1 d</span><br></pre></td></tr></table></figure>
+<h3 id="m-wc"><a href="#m-wc" class="headerlink" title="m. wc"></a>m. <code>wc</code></h3><p>Tells you how many lines, words and characters there are in a file.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wc filename</span><br></pre></td></tr></table></figure></p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wc demo.txt</span><br><span class="line">7459   15915  398400 demo.txt</span><br></pre></td></tr></table></figure></p>
+<p>Where <code>7459</code> is lines, <code>15915</code> is words and <code>398400</code> is characters.</p>
+<h2 id="1-3-Directory-Operations"><a href="#1-3-Directory-Operations" class="headerlink" title="1.3. Directory Operations"></a>1.3. Directory Operations</h2><table><br>   <tr><br>      <td><a href="#a-cd">cd</a></td><br>      <td><a href="#b-mkdir">mkdir</a></td><br>      <td><a href="#c-pwd">pwd</a></td><br>   </tr><br></table>
+
+<h3 id="a-cd"><a href="#a-cd" class="headerlink" title="a. cd"></a>a. <code>cd</code></h3><p>Moves you from one directory to other. Running this<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cd</span></span><br></pre></td></tr></table></figure></p>
+<p>moves you to home directory. This command accepts an optional <code>dirname</code>, which moves you to that directory.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> dirname</span><br></pre></td></tr></table></figure></p>
+<h3 id="b-mkdir"><a href="#b-mkdir" class="headerlink" title="b. mkdir"></a>b. <code>mkdir</code></h3><p>Makes a new directory.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir dirname</span><br></pre></td></tr></table></figure></p>
+<h3 id="c-pwd"><a href="#c-pwd" class="headerlink" title="c. pwd"></a>c. <code>pwd</code></h3><p>Tells you which directory you currently are in.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="1-4-SSH-System-Info-amp-Network-Operations"><a href="#1-4-SSH-System-Info-amp-Network-Operations" class="headerlink" title="1.4. SSH, System Info &amp; Network Operations"></a>1.4. SSH, System Info &amp; Network Operations</h2><table><br>   <tr><br>      <td><a href="#a-bg">bg</a></td><br>      <td><a href="#b-cal">cal</a></td><br>      <td><a href="#c-date">date</a></td><br>      <td><a href="#d-df">df</a></td><br>      <td><a href="#e-dig">dig</a></td><br>      <td><a href="#f-du">du</a></td><br>      <td><a href="#g-fg">fg</a></td><br>      <td><a href="#h-finger">finger</a></td><br>      <td><a href="#i-jobs">jobs</a></td><br>      <td><a href="#j-last">last</a></td><br>   </tr><br>   <tr><br>      <td><a href="#k-man">man</a></td><br>      <td><a href="#l-passwd">passwd</a></td><br>      <td><a href="#m-ping">ping</a></td><br>      <td><a href="#n-ps">ps</a></td><br>      <td><a href="#o-quota">quota</a></td><br>      <td><a href="#p-scp">scp</a></td><br>      <td><a href="#q-ssh">ssh</a></td><br>      <td><a href="#r-top">top</a></td><br>      <td><a href="#s-uname">uname</a></td><br>      <td><a href="#t-uptime">uptime</a></td><br>   </tr><br>   <tr><br>      <td><a href="#u-w">w</a></td><br>      <td><a href="#v-wget">wget</a></td><br>      <td><a href="#w-whoami">whoami</a></td><br>      <td><a href="#x-whois">whois</a></td><br>   </tr><br></table>
+
+<h3 id="a-bg"><a href="#a-bg" class="headerlink" title="a. bg"></a>a. <code>bg</code></h3><p>Lists stopped or background jobs; resume a stopped job in the background.</p>
+<h3 id="b-cal"><a href="#b-cal" class="headerlink" title="b. cal"></a>b. <code>cal</code></h3><p>Shows the month’s calendar.</p>
+<h3 id="c-date"><a href="#c-date" class="headerlink" title="c. date"></a>c. <code>date</code></h3><p>Shows the current date and time.</p>
+<h3 id="d-df"><a href="#d-df" class="headerlink" title="d. df"></a>d. <code>df</code></h3><p>Shows disk usage.</p>
+<h3 id="e-dig"><a href="#e-dig" class="headerlink" title="e. dig"></a>e. <code>dig</code></h3><p>Gets DNS information for domain.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dig domain</span><br></pre></td></tr></table></figure></p>
+<h3 id="f-du"><a href="#f-du" class="headerlink" title="f. du"></a>f. <code>du</code></h3><p>Shows the disk usage of files or directories. For more information on this command check this <a href="http://www.linfo.org/du.html" target="_blank" rel="noopener">link</a><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du [option] [filename|directory]</span><br></pre></td></tr></table></figure></p>
+<p>Options:</p>
+<ul>
+<li><code>-h</code> (human readable) Displays output it in kilobytes (K), megabytes (M) and gigabytes (G).</li>
+<li><code>-s</code> (supress or summarize) Outputs total disk space of a directory and supresses reports for subdirectories. </li>
+</ul>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">du -sh pictures</span><br><span class="line">1.4M pictures</span><br></pre></td></tr></table></figure></p>
+<h3 id="g-fg"><a href="#g-fg" class="headerlink" title="g. fg"></a>g. <code>fg</code></h3><p>Brings the most recent job in the foreground.</p>
+<h3 id="h-finger"><a href="#h-finger" class="headerlink" title="h. finger"></a>h. <code>finger</code></h3><p>Displays information about user.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">finger username</span><br></pre></td></tr></table></figure></p>
+<h3 id="i-jobs"><a href="#i-jobs" class="headerlink" title="i. jobs"></a>i. <code>jobs</code></h3><p>Lists the jobs running in the background, giving the job number.</p>
+<h3 id="j-last"><a href="#j-last" class="headerlink" title="j. last"></a>j. <code>last</code></h3><p>Lists your last logins of specified user.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">last yourUsername</span><br></pre></td></tr></table></figure></p>
+<h3 id="k-man"><a href="#k-man" class="headerlink" title="k. man"></a>k. <code>man</code></h3><p>Shows the manual for specified command.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">man <span class="built_in">command</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="l-passwd"><a href="#l-passwd" class="headerlink" title="l. passwd"></a>l. <code>passwd</code></h3><p>Allows the current logged user to change their password.</p>
+<h3 id="m-ping"><a href="#m-ping" class="headerlink" title="m. ping"></a>m. <code>ping</code></h3><p>Pings host and outputs results.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ping host</span><br></pre></td></tr></table></figure></p>
+<h3 id="n-ps"><a href="#n-ps" class="headerlink" title="n. ps"></a>n. <code>ps</code></h3><p>Lists your processes.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -u yourusername</span><br></pre></td></tr></table></figure></p>
+<p>Use the flags ef. e for every process and f for full listing.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -ef</span><br></pre></td></tr></table></figure></p>
+<h3 id="o-quota"><a href="#o-quota" class="headerlink" title="o. quota"></a>o. <code>quota</code></h3><p>Shows what your disk quota is.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quota -v</span><br></pre></td></tr></table></figure></p>
+<h3 id="p-scp"><a href="#p-scp" class="headerlink" title="p. scp"></a>p. <code>scp</code></h3><p>Transfer files between a local host and a remote host or between two remote hosts.</p>
+<p><em>copy from local host to remote host</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp source_file user@host:directory/target_file</span><br></pre></td></tr></table></figure></p>
+<p><em>copy from remote host to local host</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scp user@host:directory/source_file target_file</span><br><span class="line">scp -r user@host:directory/source_folder target_folder</span><br></pre></td></tr></table></figure></p>
+<p>This command also accepts an option <code>-P</code> that can be used to connect to specific port.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp -P port user@host:directory/source_file target_file</span><br></pre></td></tr></table></figure></p>
+<h3 id="q-ssh"><a href="#q-ssh" class="headerlink" title="q. ssh"></a>q. <code>ssh</code></h3><p>ssh (SSH client) is a program for logging into and executing commands on a remote machine.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh user@host</span><br></pre></td></tr></table></figure></p>
+<p>This command also accepts an option <code>-p</code> that can be used to connect to specific port.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -p port user@host</span><br></pre></td></tr></table></figure></p>
+<h3 id="r-top"><a href="#r-top" class="headerlink" title="r. top"></a>r. <code>top</code></h3><p>Displays your currently active processes.</p>
+<h3 id="s-uname"><a href="#s-uname" class="headerlink" title="s. uname"></a>s. <code>uname</code></h3><p>Shows kernel information.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -a</span><br></pre></td></tr></table></figure></p>
+<h3 id="t-uptime"><a href="#t-uptime" class="headerlink" title="t. uptime"></a>t. <code>uptime</code></h3><p>Shows current uptime.</p>
+<h3 id="u-w"><a href="#u-w" class="headerlink" title="u. w"></a>u. <code>w</code></h3><p>Displays who is online.</p>
+<h3 id="v-wget"><a href="#v-wget" class="headerlink" title="v. wget"></a>v. <code>wget</code></h3><p>Downloads file.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget file</span><br></pre></td></tr></table></figure></p>
+<h3 id="w-whoami"><a href="#w-whoami" class="headerlink" title="w. whoami"></a>w. <code>whoami</code></h3><p>Return current logged in username.</p>
+<h3 id="x-whois"><a href="#x-whois" class="headerlink" title="x. whois"></a>x. <code>whois</code></h3><p>Gets whois information for domain.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">whois domain</span><br></pre></td></tr></table></figure></p>
+<h2 id="1-5-Process-Monitoring-Operations"><a href="#1-5-Process-Monitoring-Operations" class="headerlink" title="1.5. Process Monitoring Operations"></a>1.5. Process Monitoring Operations</h2><table><br>   <tr><br>      <td><a href="#a-kill">kill</a></td><br>      <td><a href="#b-killall">killall</a></td><br>      <td><a href="#c-&">&amp;</a></td><br>      <td><a href="#d-nohup">nohup</a></td><br>   </tr><br></table>
+
+<h3 id="a-kill"><a href="#a-kill" class="headerlink" title="a. kill"></a>a. <code>kill</code></h3><p>Kills (ends) the processes with the ID you gave.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">kill</span> PID</span><br></pre></td></tr></table></figure></p>
+<h3 id="b-killall"><a href="#b-killall" class="headerlink" title="b. killall"></a>b. <code>killall</code></h3><p>Kill all processes with the name.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">killall processname</span><br></pre></td></tr></table></figure></p>
+<h3 id="c-amp"><a href="#c-amp" class="headerlink" title="c. &amp;"></a>c. &amp;</h3><p>The <code>&amp;</code> symbol instructs the command to run as a background process in a subshell.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">command</span> &amp;</span><br></pre></td></tr></table></figure></p>
+<h3 id="d-nohup"><a href="#d-nohup" class="headerlink" title="d. nohup"></a>d. <code>nohup</code></h3><p>nohup stands for “No Hang Up”. This allows to run command/process or shell script that can continue running in the background after you log out from a shell.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup <span class="built_in">command</span></span><br></pre></td></tr></table></figure></p>
+<p>Combine it with <code>&amp;</code> to create background processes<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nohup <span class="built_in">command</span> &amp;</span><br></pre></td></tr></table></figure></p>
+<h1 id="2-Basic-Shell-Programming"><a href="#2-Basic-Shell-Programming" class="headerlink" title="2. Basic Shell Programming"></a>2. Basic Shell Programming</h1><p>The first line that you will write in bash script files is called <code>shebang</code>. This line in any script determines the script’s ability to be executed like a standalone executable without typing sh, bash, python, php etc beforehand in the terminal.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/bin/env bash</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-1-Variables"><a href="#2-1-Variables" class="headerlink" title="2.1. Variables"></a>2.1. Variables</h2><p>Creating variables in bash is similar to other languages. There are no data types. A variable in bash can contain a number, a character, a string of characters, etc. You have no need to declare a variable, just assigning a value to its reference will create it.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">str=<span class="string">"hello world"</span></span><br></pre></td></tr></table></figure></p>
+<p>The above line creates a variable <code>str</code> and assigns “hello world” to it. The value of variable is retrieved by putting the <code>$</code> in the beginning of variable name.</p>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="variable">$str</span>   <span class="comment"># hello world</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="2-2-Array"><a href="#2-2-Array" class="headerlink" title="2.2. Array"></a>2.2. Array</h2><p>Like other languages bash has also arrays. An array is variable containing multiple values. There’s no maximum limit on the size of array. Array in bash are zero based. The first element is indexed with element 0. There are several ways for creating arrays in bash. Which are given below.</p>
+<p>Examples:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array[0] = val</span><br><span class="line">array[1] = val</span><br><span class="line">array[2] = val</span><br><span class="line">array=([2]=val [0]=val [1]=val)</span><br><span class="line">array=(val val val)</span><br></pre></td></tr></table></figure></p>
+<p>To display a value at specific index use following syntax:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;array[i]&#125;</span>     <span class="comment"># where i is the index</span></span><br></pre></td></tr></table></figure>
+<p>If no index is supplied, array element 0 is assumed. To find out how many values there are in the array use the following syntax:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;#array[@]&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Bash has also support for the ternary conditions. Check some examples below.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;varname:-word&#125;</span>    <span class="comment"># if varname exists and isn't null, return its value; otherwise return word</span></span><br><span class="line"><span class="variable">$&#123;varname:=word&#125;</span>    <span class="comment"># if varname exists and isn't null, return its value; otherwise set it word and then return its value</span></span><br><span class="line"><span class="variable">$&#123;varname:+word&#125;</span>    <span class="comment"># if varname exists and isn't null, return word; otherwise return null</span></span><br><span class="line"><span class="variable">$&#123;varname:offset:length&#125;</span>    <span class="comment"># performs substring expansion. It returns the substring of $varname starting at offset and up to length characters</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-3-String-Substitution"><a href="#2-3-String-Substitution" class="headerlink" title="2.3 String Substitution"></a>2.3 String Substitution</h2><p>Check some of the syntax on how to manipulate strings</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$&#123;variable#pattern&#125;</span>         <span class="comment"># if the pattern matches the beginning of the variable's value, delete the shortest part that matches and return the rest</span></span><br><span class="line"><span class="variable">$&#123;variable##pattern&#125;</span>        <span class="comment"># if the pattern matches the beginning of the variable's value, delete the longest part that matches and return the rest</span></span><br><span class="line"><span class="variable">$&#123;variable%pattern&#125;</span>         <span class="comment"># if the pattern matches the end of the variable's value, delete the shortest part that matches and return the rest</span></span><br><span class="line"><span class="variable">$&#123;variable%%pattern&#125;</span>        <span class="comment"># if the pattern matches the end of the variable's value, delete the longest part that matches and return the rest</span></span><br><span class="line"><span class="variable">$&#123;variable/pattern/string&#125;</span>  <span class="comment"># the longest match to pattern in variable is replaced by string. Only the first match is replaced</span></span><br><span class="line"><span class="variable">$&#123;variable//pattern/string&#125;</span> <span class="comment"># the longest match to pattern in variable is replaced by string. All matches are replaced</span></span><br><span class="line"><span class="variable">$&#123;#varname&#125;</span>     <span class="comment"># returns the length of the value of the variable as a character string</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-4-Functions"><a href="#2-4-Functions" class="headerlink" title="2.4. Functions"></a>2.4. Functions</h2><p>As in almost any programming language, you can use functions to group pieces of code in a more logical way or practice the divine art of recursion. Declaring a function is just a matter of writing function my_func { my_code }. Calling a function is just like calling another program, you just write its name.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">name</span></span>() &#123;</span><br><span class="line">    shell commands</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Example:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="keyword">function</span> hello &#123;</span><br><span class="line">   <span class="built_in">echo</span> world!</span><br><span class="line">&#125;</span><br><span class="line">hello</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> say &#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$1</span></span><br><span class="line">&#125;</span><br><span class="line">say <span class="string">"hello world!"</span></span><br></pre></td></tr></table></figure></p>
+<p>When you run the above example the <code>hello</code> function will output “world!”. The above two functions <code>hello</code> and <code>say</code> are identical. The main difference is function <code>say</code>. This function, prints the first argument it receives. Arguments, within functions, are treated in the same manner as arguments given to the script.</p>
+<h2 id="2-5-Conditionals"><a href="#2-5-Conditionals" class="headerlink" title="2.5. Conditionals"></a>2.5. Conditionals</h2><p>The conditional statement in bash is similar to other programming languages. Conditions have many form like the most basic form is <code>if</code> expression <code>then</code> statement where statement is only executed if expression is true.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ expression ]; <span class="keyword">then</span></span><br><span class="line">    will execute only <span class="keyword">if</span> expression is <span class="literal">true</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    will execute <span class="keyword">if</span> expression is <span class="literal">false</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<p>Sometime if conditions becoming confusing so you can write the same condition using the <code>case statements</code>.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> expression <span class="keyword">in</span></span><br><span class="line">    pattern1 )</span><br><span class="line">        statements ;;</span><br><span class="line">    pattern2 )</span><br><span class="line">        statements ;;</span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<p>Expression Examples:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">statement1 &amp;&amp; statement2  <span class="comment"># both statements are true</span></span><br><span class="line">statement1 || statement2  <span class="comment"># at least one of the statements is true</span></span><br><span class="line"></span><br><span class="line">str1=str2       <span class="comment"># str1 matches str2</span></span><br><span class="line">str1!=str2      <span class="comment"># str1 does not match str2</span></span><br><span class="line">str1&lt;str2       <span class="comment"># str1 is less than str2</span></span><br><span class="line">str1&gt;str2       <span class="comment"># str1 is greater than str2</span></span><br><span class="line">-n str1         <span class="comment"># str1 is not null (has length greater than 0)</span></span><br><span class="line">-z str1         <span class="comment"># str1 is null (has length 0)</span></span><br><span class="line"></span><br><span class="line">-a file         <span class="comment"># file exists</span></span><br><span class="line">-d file         <span class="comment"># file exists and is a directory</span></span><br><span class="line">-e file         <span class="comment"># file exists; same -a</span></span><br><span class="line">-f file         <span class="comment"># file exists and is a regular file (i.e., not a directory or other special type of file)</span></span><br><span class="line">-r file         <span class="comment"># you have read permission</span></span><br><span class="line">-s file         <span class="comment"># file exists and is not empty</span></span><br><span class="line">-w file         <span class="comment"># you have write permission</span></span><br><span class="line">-x file         <span class="comment"># you have execute permission on file, or directory search permission if it is a directory</span></span><br><span class="line">-N file         <span class="comment"># file was modified since it was last read</span></span><br><span class="line">-O file         <span class="comment"># you own file</span></span><br><span class="line">-G file         <span class="comment"># file's group ID matches yours (or one of yours, if you are in multiple groups)</span></span><br><span class="line"></span><br><span class="line">file1 -nt file2     <span class="comment"># file1 is newer than file2</span></span><br><span class="line">file1 -ot file2     <span class="comment"># file1 is older than file2</span></span><br><span class="line"></span><br><span class="line">-lt     <span class="comment"># less than</span></span><br><span class="line">-le     <span class="comment"># less than or equal</span></span><br><span class="line">-eq     <span class="comment"># equal</span></span><br><span class="line">-ge     <span class="comment"># greater than or equal</span></span><br><span class="line">-gt     <span class="comment"># greater than</span></span><br><span class="line">-ne     <span class="comment"># not equal</span></span><br></pre></td></tr></table></figure>
+<h2 id="2-6-Loops"><a href="#2-6-Loops" class="headerlink" title="2.6. Loops"></a>2.6. Loops</h2><p>There are three types of loops in bash. <code>for</code>, <code>while</code> and <code>until</code>.</p>
+<p>Different <code>for</code> Syntax:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x := 1 to 10 <span class="keyword">do</span></span><br><span class="line">begin</span><br><span class="line">  statements</span><br><span class="line">end</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> name [<span class="keyword">in</span> list]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  statements that can use <span class="variable">$name</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (( initialisation ; ending condition ; update ))</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">  statements...</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p><code>while</code> Syntax:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> condition; <span class="keyword">do</span></span><br><span class="line">  statements</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p><code>until</code> Syntax:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">until condition; <span class="keyword">do</span></span><br><span class="line">  statements</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="3-Tricks"><a href="#3-Tricks" class="headerlink" title="3. Tricks"></a>3. Tricks</h1><h2 id="Set-an-alias"><a href="#Set-an-alias" class="headerlink" title="Set an alias"></a>Set an alias</h2><p>Open <code>bash_profile</code> by running following command <code>nano ~/.bash_profile</code></p>
+<blockquote>
+<p>alias dockerlogin=’ssh www-data@adnan.local -p2222’  # add your alias in .bash_profile</p>
+</blockquote>
+<h2 id="To-quickly-go-to-a-specific-directory"><a href="#To-quickly-go-to-a-specific-directory" class="headerlink" title="To quickly go to a specific directory"></a>To quickly go to a specific directory</h2><p>nano ~/.bashrc</p>
+<blockquote>
+<p>export hotellogs=”/workspace/hotel-api/storage/logs”</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line"><span class="built_in">cd</span> <span class="variable">$hotellogs</span></span><br></pre></td></tr></table></figure>
+<h2 id="Exit-traps"><a href="#Exit-traps" class="headerlink" title="Exit traps"></a>Exit traps</h2><p>Make your bash scripts more robust by reliably performing cleanup.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> finish &#123;</span><br><span class="line">  <span class="comment"># your cleanup here. e.g. kill any forked processes</span></span><br><span class="line">  <span class="built_in">jobs</span> -p | xargs <span class="built_in">kill</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">trap</span> finish EXIT</span><br></pre></td></tr></table></figure>
+<h2 id="Saving-your-environment-variables"><a href="#Saving-your-environment-variables" class="headerlink" title="Saving your environment variables"></a>Saving your environment variables</h2><p>When you do <code>export FOO = BAR</code>, your variable is only exported in this current shell and all its children, to persist in the future you can simply append in your <code>~/.bash_profile</code> file the command to export your variable<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="built_in">export</span> FOO=BAR &gt;&gt; ~/.bash_profile</span><br></pre></td></tr></table></figure></p>
+<h2 id="Accessing-your-scripts"><a href="#Accessing-your-scripts" class="headerlink" title="Accessing your scripts"></a>Accessing your scripts</h2><p>You can easily access your scripts by creating a bin folder in your home with <code>mkdir ~/bin</code>, now all the scripts you put in this folder you can access in any directory.</p>
+<p>If you can not access, try append the code below in your <code>~/.bash_profile</code> file and after do <code>source ~/.bash_profile</code>.<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set PATH so it includes user's private bin if it exists</span></span><br><span class="line"><span class="keyword">if</span> [ -d <span class="string">"<span class="variable">$HOME</span>/bin"</span> ] ; <span class="keyword">then</span></span><br><span class="line">    PATH=<span class="string">"<span class="variable">$HOME</span>/bin:<span class="variable">$PATH</span>"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="4-Debugging"><a href="#4-Debugging" class="headerlink" title="4. Debugging"></a>4. Debugging</h1><p>You can easily debug the bash script by passing different options to <code>bash</code> command. For example <code>-n</code> will not run commands and check for syntax errors only. <code>-v</code> echo commands before running them. <code>-x</code> echo commands after command-line processing.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bash -n scriptname</span><br><span class="line">bash -v scriptname</span><br><span class="line">bash -x scriptname</span><br></pre></td></tr></table></figure>
+<h2 id="Contribution"><a href="#Contribution" class="headerlink" title="Contribution"></a>Contribution</h2><ul>
+<li>Report issues <a href="https://help.github.com/articles/creating-an-issue/" target="_blank" rel="noopener">How to</a></li>
+<li>Open pull request with improvements <a href="https://help.github.com/articles/about-pull-requests/" target="_blank" rel="noopener">How to</a></li>
+<li>Spread the word</li>
+</ul>
+<h2 id="Translation"><a href="#Translation" class="headerlink" title="Translation"></a>Translation</h2><ul>
+<li><a href="https://github.com/vuuihc/bash-guide" target="_blank" rel="noopener">Chinese | 简体中文</a></li>
+<li><a href="https://github.com/omergulen/bash-guide" target="_blank" rel="noopener">Turkish | Türkçe</a></li>
+<li><a href="https://github.com/itooww/bash-guide" target="_blank" rel="noopener">Japanese | 日本語</a></li>
+</ul>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener"><img src="https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg" alt="License: CC BY 4.0"></a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="hz 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hz 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/bash/" rel="tag"># bash</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/07/说说MVC，MVP和MVVM/" rel="next" title="说说MVC，MVP和MVVM">
+                <i class="fa fa-chevron-left"></i> 说说MVC，MVP和MVVM
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="hz" />
+            
+              <p class="site-author-name" itemprop="name">hz</p>
+              <p class="site-description motion-element" itemprop="description">coding life</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">14</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/bjut-hz" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i></a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Table-of-Contents"><span class="nav-number">1.</span> <span class="nav-text">Table of Contents</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Basic-Operations"><span class="nav-number"></span> <span class="nav-text">1. Basic Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-export"><span class="nav-number">0.1.</span> <span class="nav-text">a. export</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-whatis"><span class="nav-number">0.2.</span> <span class="nav-text">b. whatis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-whereis"><span class="nav-number">0.3.</span> <span class="nav-text">c. whereis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-which"><span class="nav-number">0.4.</span> <span class="nav-text">d. which</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-clear"><span class="nav-number">0.5.</span> <span class="nav-text">e. clear</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-File-Operations"><span class="nav-number">1.</span> <span class="nav-text">1.1. File Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-cat"><span class="nav-number">1.1.</span> <span class="nav-text">a. cat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-chmod"><span class="nav-number">1.2.</span> <span class="nav-text">b. chmod</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-chown"><span class="nav-number">1.3.</span> <span class="nav-text">c. chown</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-cp"><span class="nav-number">1.4.</span> <span class="nav-text">d. cp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-diff"><span class="nav-number">1.5.</span> <span class="nav-text">e. diff</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-file"><span class="nav-number">1.6.</span> <span class="nav-text">f. file</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#g-find"><span class="nav-number">1.7.</span> <span class="nav-text">g. find</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h-gunzip"><span class="nav-number">1.8.</span> <span class="nav-text">h. gunzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-gzcat"><span class="nav-number">1.9.</span> <span class="nav-text">i. gzcat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#j-gzip"><span class="nav-number">1.10.</span> <span class="nav-text">j. gzip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-head"><span class="nav-number">1.11.</span> <span class="nav-text">k. head</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#l-lpq"><span class="nav-number">1.12.</span> <span class="nav-text">l. lpq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m-lpr"><span class="nav-number">1.13.</span> <span class="nav-text">m. lpr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-lprm"><span class="nav-number">1.14.</span> <span class="nav-text">n. lprm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-ls"><span class="nav-number">1.15.</span> <span class="nav-text">o. ls</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p-more"><span class="nav-number">1.16.</span> <span class="nav-text">p. more</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q-mv"><span class="nav-number">1.17.</span> <span class="nav-text">q. mv</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#r-rm"><span class="nav-number">1.18.</span> <span class="nav-text">r. rm</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s-tail"><span class="nav-number">1.19.</span> <span class="nav-text">s. tail</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t-touch"><span class="nav-number">1.20.</span> <span class="nav-text">t. touch</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-Text-Operations"><span class="nav-number">2.</span> <span class="nav-text">1.2. Text Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-awk"><span class="nav-number">2.1.</span> <span class="nav-text">a. awk</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-cut"><span class="nav-number">2.2.</span> <span class="nav-text">b. cut</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-echo"><span class="nav-number">2.3.</span> <span class="nav-text">c. echo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-egrep"><span class="nav-number">2.4.</span> <span class="nav-text">d. egrep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-fgrep"><span class="nav-number">2.5.</span> <span class="nav-text">e. fgrep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-fmt"><span class="nav-number">2.6.</span> <span class="nav-text">f. fmt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#g-grep"><span class="nav-number">2.7.</span> <span class="nav-text">g. grep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h-nl"><span class="nav-number">2.8.</span> <span class="nav-text">h. nl</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-sed"><span class="nav-number">2.9.</span> <span class="nav-text">i. sed</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#j-sort"><span class="nav-number">2.10.</span> <span class="nav-text">j. sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-tr"><span class="nav-number">2.11.</span> <span class="nav-text">k. tr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#l-uniq"><span class="nav-number">2.12.</span> <span class="nav-text">l. uniq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m-wc"><span class="nav-number">2.13.</span> <span class="nav-text">m. wc</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-Directory-Operations"><span class="nav-number">3.</span> <span class="nav-text">1.3. Directory Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-cd"><span class="nav-number">3.1.</span> <span class="nav-text">a. cd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-mkdir"><span class="nav-number">3.2.</span> <span class="nav-text">b. mkdir</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-pwd"><span class="nav-number">3.3.</span> <span class="nav-text">c. pwd</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-SSH-System-Info-amp-Network-Operations"><span class="nav-number">4.</span> <span class="nav-text">1.4. SSH, System Info &amp; Network Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-bg"><span class="nav-number">4.1.</span> <span class="nav-text">a. bg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-cal"><span class="nav-number">4.2.</span> <span class="nav-text">b. cal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-date"><span class="nav-number">4.3.</span> <span class="nav-text">c. date</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-df"><span class="nav-number">4.4.</span> <span class="nav-text">d. df</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#e-dig"><span class="nav-number">4.5.</span> <span class="nav-text">e. dig</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#f-du"><span class="nav-number">4.6.</span> <span class="nav-text">f. du</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#g-fg"><span class="nav-number">4.7.</span> <span class="nav-text">g. fg</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#h-finger"><span class="nav-number">4.8.</span> <span class="nav-text">h. finger</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#i-jobs"><span class="nav-number">4.9.</span> <span class="nav-text">i. jobs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#j-last"><span class="nav-number">4.10.</span> <span class="nav-text">j. last</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-man"><span class="nav-number">4.11.</span> <span class="nav-text">k. man</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#l-passwd"><span class="nav-number">4.12.</span> <span class="nav-text">l. passwd</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#m-ping"><span class="nav-number">4.13.</span> <span class="nav-text">m. ping</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-ps"><span class="nav-number">4.14.</span> <span class="nav-text">n. ps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#o-quota"><span class="nav-number">4.15.</span> <span class="nav-text">o. quota</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#p-scp"><span class="nav-number">4.16.</span> <span class="nav-text">p. scp</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#q-ssh"><span class="nav-number">4.17.</span> <span class="nav-text">q. ssh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#r-top"><span class="nav-number">4.18.</span> <span class="nav-text">r. top</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#s-uname"><span class="nav-number">4.19.</span> <span class="nav-text">s. uname</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#t-uptime"><span class="nav-number">4.20.</span> <span class="nav-text">t. uptime</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#u-w"><span class="nav-number">4.21.</span> <span class="nav-text">u. w</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-wget"><span class="nav-number">4.22.</span> <span class="nav-text">v. wget</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#w-whoami"><span class="nav-number">4.23.</span> <span class="nav-text">w. whoami</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#x-whois"><span class="nav-number">4.24.</span> <span class="nav-text">x. whois</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-Process-Monitoring-Operations"><span class="nav-number">5.</span> <span class="nav-text">1.5. Process Monitoring Operations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-kill"><span class="nav-number">5.1.</span> <span class="nav-text">a. kill</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-killall"><span class="nav-number">5.2.</span> <span class="nav-text">b. killall</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-amp"><span class="nav-number">5.3.</span> <span class="nav-text">c. &amp;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#d-nohup"><span class="nav-number">5.4.</span> <span class="nav-text">d. nohup</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-Basic-Shell-Programming"><span class="nav-number"></span> <span class="nav-text">2. Basic Shell Programming</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-Variables"><span class="nav-number">1.</span> <span class="nav-text">2.1. Variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-Array"><span class="nav-number">2.</span> <span class="nav-text">2.2. Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-String-Substitution"><span class="nav-number">3.</span> <span class="nav-text">2.3 String Substitution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-Functions"><span class="nav-number">4.</span> <span class="nav-text">2.4. Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-Conditionals"><span class="nav-number">5.</span> <span class="nav-text">2.5. Conditionals</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-Loops"><span class="nav-number">6.</span> <span class="nav-text">2.6. Loops</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-Tricks"><span class="nav-number"></span> <span class="nav-text">3. Tricks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-an-alias"><span class="nav-number">1.</span> <span class="nav-text">Set an alias</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-quickly-go-to-a-specific-directory"><span class="nav-number">2.</span> <span class="nav-text">To quickly go to a specific directory</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exit-traps"><span class="nav-number">3.</span> <span class="nav-text">Exit traps</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Saving-your-environment-variables"><span class="nav-number">4.</span> <span class="nav-text">Saving your environment variables</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Accessing-your-scripts"><span class="nav-number">5.</span> <span class="nav-text">Accessing your scripts</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-Debugging"><span class="nav-number"></span> <span class="nav-text">4. Debugging</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Contribution"><span class="nav-number">1.</span> <span class="nav-text">Contribution</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Translation"><span class="nav-number">2.</span> <span class="nav-text">Translation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#License"><span class="nav-number">3.</span> <span class="nav-text">License</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2015 &mdash; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://hezhenzhensite.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/02/23/bash-guide/';
+          this.page.identifier = '2018/02/23/bash-guide/';
+          this.page.title = 'bash-guide';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hezhenzhensite.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

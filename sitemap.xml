@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2018/02/23/bash-guide/</loc>
+    
+    <lastmod>2018-02-23T05:13:04.460Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2018/02/07/%E8%AF%B4%E8%AF%B4MVC%EF%BC%8CMVP%E5%92%8CMVVM/</loc>
     
-    <lastmod>2018-02-07T08:36:00.973Z</lastmod>
+    <lastmod>2018-02-07T09:27:34.020Z</lastmod>
     
   </url>
   
@@ -58,14 +65,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/index.html</loc>
+    <loc>http://yoursite.com/categories/index.html</loc>
     
     <lastmod>2018-01-08T02:31:51.866Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/categories/index.html</loc>
+    <loc>http://yoursite.com/about/index.html</loc>
     
     <lastmod>2018-01-08T02:31:51.866Z</lastmod>
     
