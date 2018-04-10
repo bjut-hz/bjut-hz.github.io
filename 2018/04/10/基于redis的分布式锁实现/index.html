@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="分布式锁,redis," />
 
 
 
@@ -79,16 +79,18 @@
 
 
 
-<meta name="description" content="coding life">
-<meta property="og:type" content="website">
-<meta property="og:title" content="hz&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/tags/隐式转换/index.html">
+<meta name="description" content="redis模型Redis是基于单进程单线程模型的，即对于客户端的所有读写等请求的处理，都由一个主线程串行地处理。因此，利用该串行的性质，可以实现分布式锁。">
+<meta name="keywords" content="分布式锁,redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基于redis的分布式锁实现">
+<meta property="og:url" content="http://yoursite.com/2018/04/10/基于redis的分布式锁实现/index.html">
 <meta property="og:site_name" content="hz&#39;s blog">
-<meta property="og:description" content="coding life">
+<meta property="og:description" content="redis模型Redis是基于单进程单线程模型的，即对于客户端的所有读写等请求的处理，都由一个主线程串行地处理。因此，利用该串行的性质，可以实现分布式锁。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-10T11:38:57.844Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="hz&#39;s blog">
-<meta name="twitter:description" content="coding life">
+<meta name="twitter:title" content="基于redis的分布式锁实现">
+<meta name="twitter:description" content="redis模型Redis是基于单进程单线程模型的，即对于客户端的所有读写等请求的处理，都由一个主线程串行地处理。因此，利用该串行的性质，可以实现分布式锁。">
 
 
 
@@ -118,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/tags/隐式转换/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/04/10/基于redis的分布式锁实现/"/>
 
 
 
 
 
-  <title>标签: 隐式转换 | hz's blog</title>
+  <title>基于redis的分布式锁实现 | hz's blog</title>
   
 
 
@@ -153,7 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -311,54 +313,282 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>隐式转换<small>标签</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/10/基于redis的分布式锁实现/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hz's blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2016/05/06/C++ 类类型转换/" itemprop="url">
-              
-                <span itemprop="name">C++类类型转换</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">基于redis的分布式锁实现</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2016-05-06T22:32:28+08:00"
-              content="2016-05-06" >
-          05-06
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-10T19:32:45+08:00">
+                2018-04-10
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/分布式/" itemprop="url" rel="index">
+                    <span itemprop="name">分布式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/10/基于redis的分布式锁实现/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/10/基于redis的分布式锁实现/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="redis模型"><a href="#redis模型" class="headerlink" title="redis模型"></a>redis模型</h2><p>Redis是基于单进程单线程模型的，即对于客户端的所有读写等请求的处理，都由一个主线程串行地处理。因此，利用该串行的性质，可以实现分布式锁。</p>
+<a id="more"></a>
+<h2 id="单节点"><a href="#单节点" class="headerlink" title="单节点"></a>单节点</h2><p>基于单个redis节点，利用redis的串行执行命令的性质，实现分布式锁。可以认为把redis作为一个数据中心来用，多个客户端共同访问。</p>
+<h3 id="实现锁的正确姿势"><a href="#实现锁的正确姿势" class="headerlink" title="实现锁的正确姿势"></a>实现锁的正确姿势</h3><h5 id="获取"><a href="#获取" class="headerlink" title="获取"></a>获取</h5><pre><code>SET resource_name my_random_value NX PX 30000
+</code></pre><p>上面的命令如果执行成功，则客户端成功获取到了锁，接下来就可以访问共享资源了；而如果上面的命令执行失败，则说明获取锁失败。</p>
+<p>注意，在上面的<code>SET</code>命令中：</p>
+<ul>
+<li><p><code>my_random_value</code>是由客户端生成的一个随机字符串，它要保证在足够长的一段时间内在所有客户端的所有获取锁的请求中都是唯一的。</p>
+</li>
+<li><p><code>NX</code>表示只有当<code>resource_name</code>对应的<code>key</code>值不存在的时候才能<code>SET</code>成功。这保证了只有第一个请求的客户端才能获得锁，而其它客户端在锁被释放之前都无法获得锁。</p>
+</li>
+<li><code>PX 30000</code>表示这个锁有一个30秒的自动过期时间。当然，这里30秒只是一个例子，客户端可以选择合适的过期时间。</li>
+</ul>
+<h5 id="释放"><a href="#释放" class="headerlink" title="释放"></a>释放</h5><p>使用lua脚本来释放;</p>
+<pre><code>if redis.call(&quot;get&quot;,KEYS[1]) == ARGV[1] then
+    return redis.call(&quot;del&quot;,KEYS[1])
+else
+    return 0
+end
+</code></pre><p>这段Lua脚本在执行的时候要把前面的<code>my_random_value</code>作为<code>ARGV[1]</code>的值传进去，把<code>resource_name</code>作为<code>KEYS[1]</code>的值传进去。</p>
+<h4 id="关键点分析"><a href="#关键点分析" class="headerlink" title="关键点分析"></a>关键点分析</h4><ul>
+<li>过期时间设置</li>
+</ul>
+<p>获取锁必须设置过期时间。否则的话，当客户端获取锁成功后，但是客户端发生崩溃或者由于发生了网络分区，都会导致不能与redis通信，因此永远不会释放被锁住的资源。因此必须对锁设置过期时间，并且客户端必须在这个时间间隔内完成对共享资源的访问，否则就失去了锁的意义。</p>
+<ul>
+<li>不能能使用<code>setnx</code>与<code>expire</code>两条指令来获取锁</li>
+</ul>
+<p>有一种方案把获取锁的操作分成了两步：</p>
+<pre><code>SETNX resource_name my_random_value
+EXPIRE resource_name 30
+</code></pre><p>虽然这两条指令与前面描述的<code>SET</code>指令执行效果相同，但是由于执行的过程中不是原子的，可能发生客户端在<code>SETNX</code>执行成功后崩溃，那么<code>EXPIRE</code>没有机会执行，那么会导致一直持有该锁。</p>
+<p>但是是否可以使用lua脚本来原子性的执行这两个操作呢？</p>
+<ul>
+<li><code>my_random_value</code>设置</li>
+</ul>
+<p>设置<code>my_random_value</code>保证了一个客户端在释放锁的时候释放的是自己持有的那个锁。假设获取锁的时候设置的是一个固定的值，可能会发生一下序列：</p>
+<ol>
+<li>c1获取锁M成功</li>
+<li>c1在获取锁期间执行的操作超时了(超时是指超过了锁过期时间，比如阻塞操作)</li>
+<li>锁自动释放</li>
+<li>c2获取了同一个锁M</li>
+<li>在c2获取锁的期间，c1恢复操作，此时执行锁释放操作，那么如果设置的是固定值，那么c1会释放掉c2持有的锁。之后c2访问共享资源时，就没有锁提供保护。</li>
+</ol>
+<ul>
+<li>使用lua脚本释放锁</li>
+</ul>
+<p>在redis中执行lua脚本能保证操作的原子性。释放锁其实包含三步操作：<code>GET</code>、判断和<code>DEL</code>，用Lua脚本来实现能保证这三步的原子性。如果把这三个步骤放到客户端中分开执行的话，就可能发生与上面类似的执行序列：</p>
+<ol>
+<li>c1获取锁M成功</li>
+<li>c1访问共享资源，并释放锁</li>
+<li>c1释放锁，首先执行<code>GET</code>操作，但是由于某些原因(网络延迟，客户端得到<code>GET</code>结果延迟)，导致c1在执行<code>DEL</code>操作前已经超时。</li>
+<li>过期时间到，锁自动释放。</li>
+<li>c2获取同一个锁M</li>
+<li>在c2获取锁的期间，c1执行<code>DEL</code>操作，c1释放掉c2持有的锁。之后c2访问共享资源时，就没有锁提供保护。</li>
+</ol>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ul>
+<li>单点故障</li>
+</ul>
+<p>前面的注意点保证了分布式锁的正确性，但是由于是基于单节点实现分布式锁，所以如果该节点出现了故障，那么就会整个服务不可用。</p>
+<p>redis提供了主从备份的机制，但是使用该机制也不能解决单点分布式锁面临的单点故障问题。为了提高可用性，我们可以给这个Redis节点挂一个Slave，当Master节点不可用的时候，系统自动切到Slave上（failover）。但由于Redis的主从复制（replication）是异步的，这可能导致在failover过程中丧失锁的安全性。考虑下面的执行序列：</p>
+<ol>
+<li>c1从Master获取了锁。</li>
+<li>Master宕机了，存储锁的key还没有来得及同步到Slave上。</li>
+<li>Slave升级为Master。</li>
+<li>c2从新的Master获取到了对应同一个资源的锁。</li>
+</ol>
+<p>于是，c1和c2同时持有了同一个资源的锁。锁的安全性被打破。</p>
+<ul>
+<li>过期时间设置</li>
+</ul>
+<p>这个分布式锁的算法，需要设置锁的有效时间，那么设置多少合适呢？如果设置太短的话，锁就有可能在客户端完成对于共享资源的访问之前过期，从而失去保护；如果设置太长的话，一旦某个持有锁的客户端释放锁失败，那么就会导致所有其它客户端都无法获取锁，从而长时间内无法正常工作。是个两难的问题。</p>
+<h2 id="多节点Redlock"><a href="#多节点Redlock" class="headerlink" title="多节点Redlock"></a>多节点Redlock</h2><p>为了解决基于单点redis实现分布式锁服务存在的单点故障问题，redis作者antirez设计了Redlock算法。这个算法基于多个redis节点。</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.jpg" alt="hz 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.jpg" alt="hz 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式锁/" rel="tag"># 分布式锁</a>
+          
+            <a href="/tags/redis/" rel="tag"># redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/02/23/bash-guide/" rel="next" title="bash-guide">
+                <i class="fa fa-chevron-left"></i> bash-guide
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -366,6 +596,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -386,8 +630,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -461,6 +714,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis模型"><span class="nav-number">1.</span> <span class="nav-text">redis模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单节点"><span class="nav-number">2.</span> <span class="nav-text">单节点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实现锁的正确姿势"><span class="nav-number">2.1.</span> <span class="nav-text">实现锁的正确姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#获取"><span class="nav-number">2.1.0.1.</span> <span class="nav-text">获取</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#释放"><span class="nav-number">2.1.0.2.</span> <span class="nav-text">释放</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键点分析"><span class="nav-number">2.1.1.</span> <span class="nav-text">关键点分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题"><span class="nav-number">2.2.</span> <span class="nav-text">问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多节点Redlock"><span class="nav-number">3.</span> <span class="nav-text">多节点Redlock</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -608,6 +877,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -625,6 +898,18 @@
       <script id="dsq-count-scr" src="https://hezhenzhensite.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/04/10/基于redis的分布式锁实现/';
+          this.page.identifier = '2018/04/10/基于redis的分布式锁实现/';
+          this.page.title = '基于redis的分布式锁实现';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://hezhenzhensite.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
